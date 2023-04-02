@@ -1,11 +1,11 @@
-import { ConfigModule } from '@nestjs/config'
 import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { getConnectionOptions } from 'typeorm'
 import * as Joi from 'joi'
 
 import { UserModule } from '@api'
 import { ServicesModule } from '@services/services.module'
-import { getConnectionOptions } from 'typeorm'
 
 @Module({
   imports: [
