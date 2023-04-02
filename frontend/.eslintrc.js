@@ -33,6 +33,8 @@ module.exports = {
   ],
   plugins: ['simple-import-sort', 'prettier'],
   rules: {
+    semi: 0,
+    '@typescript-eslint/ban-ts-comment': 'off',
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     'react/react-in-jsx-scope': 'off',
     'jsx-a11y/accessible-emoji': 'off',
@@ -49,4 +51,4 @@ module.exports = {
       },
     ],
   },
-};
+}
