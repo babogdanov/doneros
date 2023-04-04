@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 
 import Layout from './components/common/Layout'
+import ETC from './pages/etc'
 import Home from './pages/home'
 
 const AppRoutes = () => {
@@ -8,7 +9,7 @@ const AppRoutes = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/etc" element={<div> Сложи ме в /pages, бре! </div>} />
+        <Route path="/etc" element={<ETC />} />
       </Route>
     </Routes>
   )

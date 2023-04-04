@@ -1,1 +1,1 @@
-export * from './hello-world/user.module'
+export * from './user/user.module'
