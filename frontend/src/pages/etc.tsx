@@ -1,5 +1,5 @@
-const ETC = () => {
+const Etc = () => {
   return <div> Вече съм в /pages </div>
 }
 
-export default ETC
+export default Etc
