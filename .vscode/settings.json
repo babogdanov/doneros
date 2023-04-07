@@ -2,6 +2,10 @@
     "typescript.preferences.quoteStyle": "single",
     "cSpell.words": [
         "nestjs",
+        "tanstack",
+        "toastify",
         "typeorm"
-    ]
+    ],
+    "files.eol" : "\n",
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
