@@ -9,7 +9,7 @@ import type { UserWithoutPassword } from '@models/user-without-password'
 
 import { User } from '@entities/user.entity'
 import { ResetToken } from '@entities/reset-token.entity'
-import { RegisterDto } from './dto/register.dto'
+import { LoginDto } from './dto/login.dto'
 
 @Injectable()
 export class AuthService {
@@ -61,7 +61,7 @@ export class AuthService {
     return user
   }
 
-  async registerUser(registerDto: RegisterDto) {
+  async registerUser(registerDto: LoginDto) {
     const user = await this.userRepository.create({ ...registerDto }).save()
     // @ts-ignore
     delete user?.password

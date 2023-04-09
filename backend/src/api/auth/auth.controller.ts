@@ -11,10 +11,8 @@ import {
 } from '@nestjs/common'
 
 import type { Request } from '@models/request'
-
 import { JwtAuthGuard } from '@guards/jwt.guard'
 import { LoginDto } from './dto/login.dto'
-import { RegisterDto } from './dto/register.dto'
 
 import { AuthService } from './auth.service'
 
@@ -57,12 +55,12 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(@Body() registerDto: RegisterDto) {
-    const doesUserExist = await this.authService.getUser({
+  async register(@Body() registerDto: LoginDto) {
+    const userExists = await this.authService.getUser({
       email: registerDto.email,
     })
 
-    if (doesUserExist) {
+    if (userExists) {
       throw new ConflictException('User already exists.')
     }
 
