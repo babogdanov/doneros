@@ -9,11 +9,15 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    jest: true
+    jest: true,
   },
-  ignorePatterns: ['.eslintrc.js', 'src/services/typeorm/migrations', 'src/services/typeorm/seeds'],
+  ignorePatterns: [
+    '.eslintrc.js',
+    'src/services/typeorm/migrations',
+    'src/services/typeorm/seeds',
+  ],
   rules: {
-    'semi': 0,
+    semi: 0,
     'no-console': 1,
     'class-methods-use-this': 'off',
     'import/prefer-default-export': 'off',
@@ -21,4 +25,4 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
   },
-};
+}

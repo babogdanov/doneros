@@ -7,8 +7,8 @@ import './index.css'
 import 'react-toastify/dist/ReactToastify.css'
 import App from './App'
 import { queryClient } from './api/queryClient'
-// Create a client
 
+// Create a client
 const AppWrapper = () => {
   return (
     <QueryClientProvider client={queryClient}>
