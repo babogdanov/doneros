@@ -1,3 +1,3 @@
 ## How to run
 
-`yarn && yarn dev`
+`yarn && yarn start`
