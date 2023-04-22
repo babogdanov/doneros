@@ -4,8 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { getConnectionOptions } from 'typeorm'
 import * as Joi from 'joi'
 
-import { UserModule } from '@api'
-import { ServicesModule } from '@services/services.module'
+import { AuthModule } from './api/auth/auth.module'
 
 @Module({
   imports: [
@@ -38,8 +37,7 @@ import { ServicesModule } from '@services/services.module'
         }),
     }),
     // App Modules
-    UserModule,
-    ServicesModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "moduleResolution": "node",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -19,9 +20,12 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@api": ["src/api"],
+      "@api/*": ["src/api/*"],
       "@entities/*": ["src/services/typeorm/entities/*"],
-      "@services/*": ["src/services/*"],
+      "@utils/*": ["src/utils/*"],
+      "@models/*": ["src/models/*"],
+      "@decorators/*": ["src/decorators/*"],
+      "@guards/*": ["src/guards/*"],
     }
   }
 }
