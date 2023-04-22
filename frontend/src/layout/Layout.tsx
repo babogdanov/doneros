@@ -6,13 +6,13 @@ const Layout = () => {
     <>
       <nav className='w-full h-20 bg-gray-900'>
         <ul className='w-40 h-20 p-4 flex justify-between items-center list-none'>
-          <Link to='/register'>
+          <Link to='/'>
             <li className='text-gray-50'>Home</li>
           </Link>
           <Link to='/login'>
             <li className='text-gray-50'>Login</li>
           </Link>
-          <Link to='/restaurants'>
+          <Link to='/register'>
             <li className='text-gray-50'>Registration</li>
           </Link>
         </ul>
