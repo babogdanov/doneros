@@ -1,5 +1,12 @@
+import MenuBotton from '../components/common/MenuBotton'
+
 const Home = () => {
-  return <div>Hi there</div>
+  return (
+    <div>
+      <div>Hi there</div>
+      <MenuBotton />
+    </div>
+  )
 }
 
 export default Home
