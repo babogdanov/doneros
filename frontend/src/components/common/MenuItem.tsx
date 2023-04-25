@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 
 const MenuItem = () => (
   <div className="bg-white shadow-lg rounded-lg w-80 h-96 font-sans text-center">
