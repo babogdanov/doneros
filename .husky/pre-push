@@ -6,9 +6,9 @@ function prepush(){
 }
 
 # This is done, because we need to format, lint & build the front-end before push
-cd ./front-end
+cd ./frontend
 prepush
 
 # This is done, because we need to format, lint & build the back-end before push
-cd ../back-end
+cd ../backend
 prepush
