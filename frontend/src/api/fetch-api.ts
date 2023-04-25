@@ -51,10 +51,7 @@ const fetchApi = async (params: FetchParams) => {
 
   if (isCredentialsRes) {
     setJWT(data.accessToken) // in case of logout we intentionally set JWT to null
-    queryClient.setQueryData(LOCAL_AUTH_KEY, {
-      ...data,
-      isAuthenticated: !!(data.accessToken && data.user),
-    })
+    queryClient.setQueryData(LOCAL_AUTH_KEY, data)
   }
 
   return data
