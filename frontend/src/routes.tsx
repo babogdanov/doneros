@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 import Layout from './layout/Layout'
 import Home from './pages/Home.page'
@@ -16,6 +16,7 @@ const AppRoutes = () => {
         <Route element={<ProtectedRoute />}>
           <Route path='/restaurants' element={<div>Тука е само за избрани. </div>} />
         </Route>
+        <Route path='*' element={<Navigate to='/' replace />} />
       </Route>
     </Routes>
   )
