@@ -1,0 +1,18 @@
+{
+  "name": "doneros",
+  "version": "0.0.3",
+  "description": "Doneros B Monorepo",
+  "license": "UNLICENSED",
+  "scripts": {
+    "prepare": "husky install",
+    "release": "standard-version"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.8",
+    "standard-version": "^9.5.0"
+  },
+  "dependencies": {}
+}
