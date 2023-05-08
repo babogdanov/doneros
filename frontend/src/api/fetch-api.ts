@@ -37,8 +37,7 @@ const fetchApi = async (params: FetchParams) => {
 
   const { data, status } = await req
   // 401 unauthorized -> authentication required
-  const isUnauthorizedRes =
-    status === HttpStatusCode.Unauthorized 
+  const isUnauthorizedRes = status === HttpStatusCode.Unauthorized
 
   if (isUnauthorizedRes) {
     clearUser()

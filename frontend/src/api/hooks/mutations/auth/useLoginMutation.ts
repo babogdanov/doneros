@@ -21,7 +21,7 @@ const useLoginMutation = () => {
       onError: (error) => {
         const errorMessage = error?.response?.data?.message
         toast.error(errorMessage)
-      }
+      },
     },
   })
 }
