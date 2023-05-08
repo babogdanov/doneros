@@ -7,6 +7,7 @@ interface BaseQueryParams<TRes, TErr> {
   apiParams: Omit<FetchParams, 'body'>
   builtInParams?: UseQueryOptions<unknown, TErr, TRes>
 }
+
 function useBaseQuery<TRes>(
   params: BaseQueryParams<TRes, ApiError>,
 ): UseQueryResult<TRes, ApiError> {

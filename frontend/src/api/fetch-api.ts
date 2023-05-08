@@ -1,7 +1,5 @@
 import axios, { HttpStatusCode } from 'axios'
-import { clearJWT, getJWT, setJWT } from '../utils/jwt.utils'
-import { LOCAL_AUTH_KEY } from '../hooks/useAuth'
-import { queryClient } from './queryClient'
+import { clearUser, getUser } from '../utils/local-storage.utils'
 
 export interface FetchParams {
   path: string
@@ -16,7 +14,8 @@ interface Headers {
 const fetchApi = async (params: FetchParams) => {
   const headers: Headers = {}
   // By default, if we have a accessToken in the session storage, let's use that for authenticated requests
-  const accessToken = getJWT()
+  const user = getUser()
+  const accessToken = user?.accessToken
 
   // Set the header for authentication.
   if (accessToken) {
@@ -41,17 +40,7 @@ const fetchApi = async (params: FetchParams) => {
   const isUnauthorizedRes = status === HttpStatusCode.Unauthorized
 
   if (isUnauthorizedRes) {
-    clearJWT()
-
-    queryClient.removeQueries(LOCAL_AUTH_KEY)
-  }
-
-  // 200 ok -> response with credentials
-  const isCredentialsRes = data && data.accessToken && data.user
-
-  if (isCredentialsRes) {
-    setJWT(data.accessToken) // in case of logout we intentionally set JWT to null
-    queryClient.setQueryData(LOCAL_AUTH_KEY, data)
+    clearUser()
   }
 
   return data

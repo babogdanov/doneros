@@ -1,33 +1,27 @@
-/** General-use types */
-export interface User {
+/* General-use types */
+
+export type User = {
   id: number
   email: string
-}
-
-export interface AuthState {
-  user: User | null
   accessToken: string | null
-  isAuthenticated: boolean
 }
 
-/** API types */
-export interface LoginResponse {
-  user: User
-  accessToken: string
-}
+/* API types */
 
-export interface EmailRequest {
+export type EmailRequest = {
   email: string
 }
 
-export interface LoginRequest extends EmailRequest {
+export type LoginRequest = EmailRequest & {
   password: string
 }
 
-export interface RegisterResponse {
-  user: User
-}
+export type LoginResponse = User
 
-export interface RegisterRequest extends EmailRequest {
+export type SyncResponse = User
+
+export type RegisterRequest = EmailRequest & {
   password: string
 }
+
+export type RegisterResponse = Omit<User, 'accessToken'>

@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common'
 
 import type { Request } from '@models/request'
+import type { UserWithAccessToken } from '@models/user-with-access-token'
 import { JwtAuthGuard } from '@guards/jwt.guard'
 import { LoginDto } from './dto/login.dto'
 
@@ -22,7 +23,7 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('sync')
-  async sync(@Req() req: Request) {
+  async sync(@Req() req: Request): Promise<UserWithAccessToken> {
     const userWithoutPassword = await this.authService.getUser({
       id: req.user.id,
     })
@@ -32,11 +33,11 @@ export class AuthController {
     }
     const accessToken = this.authService.generateJWTToken(userWithoutPassword)
 
-    return { accessToken, user: userWithoutPassword }
+    return { ...userWithoutPassword, accessToken }
   }
 
   @Post('login')
-  async login(@Body() loginDto: LoginDto) {
+  async login(@Body() loginDto: LoginDto): Promise<UserWithAccessToken> {
     const { email, password } = loginDto
     const userWithoutPassword = await this.authService.validateUser(
       email,
@@ -51,7 +52,7 @@ export class AuthController {
 
     const accessToken = this.authService.generateJWTToken(userWithoutPassword)
 
-    return { accessToken, user: userWithoutPassword }
+    return { ...userWithoutPassword, accessToken }
   }
 
   @Post('register')
