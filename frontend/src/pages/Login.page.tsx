@@ -1,22 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 import useLoginMutation from '../api/hooks/mutations/auth/useLoginMutation'
 import useValidation from '../hooks/useValidation'
 import { trimObjectStrings } from '../utils/string.utils'
 import { ERROR } from '../utils/error-message.constants'
-import useAuth from '../hooks/useAuth'
-import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
-  const { isAuthenticated } = useAuth()
-  const navigate = useNavigate()
   const [formState, setFormState] = useState({
     email: '',
     password: '',
   })
 
-  const { mutate: login, error, isError, isSuccess } = useLoginMutation()
+  const { mutate: login } = useLoginMutation()
 
   const [isValid, errorMessage] = useValidation([
     {
@@ -43,22 +39,6 @@ const LoginPage = () => {
 
     login({ email: trimmedForm.email, password: trimmedForm.password })
   }
-
-  useEffect(() => {
-    if (isError) {
-      const errorMessage = error?.response?.data?.message
-      toast.error(errorMessage)
-    }
-    if (isSuccess) {
-      toast.success('You have logged in successfully')
-    }
-  }, [error, isError, isSuccess])
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/restaurants')
-    }
-  }, [isAuthenticated])
 
   return (
     <>
