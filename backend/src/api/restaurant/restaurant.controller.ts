@@ -15,21 +15,25 @@ export class RestaurantController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.restaurantService.getRestaurant(+id);
+    const restaurant= await this.restaurantService.getRestaurant(+id);
+    return restaurant
   }
 
   @Post()
   async create(@Body() createRestaurantDto: CreateRestaurantDto) {
-    return await this.restaurantService.createRestaurant(createRestaurantDto);
+    const restaurant = await this.restaurantService.createRestaurant(createRestaurantDto);
+    return restaurant
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateRestaurantDto: UpdateRestaurantDto) {
-    return await this.restaurantService.updateRestaurant(+id, updateRestaurantDto);
+    const restaurant = await this.restaurantService.updateRestaurant(+id, updateRestaurantDto);
+    return restaurant
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    return await this.restaurantService.removeRestaurant(+id);
+    const restaurant = await this.restaurantService.removeRestaurant(+id);
+    return restaurant
   }
 }

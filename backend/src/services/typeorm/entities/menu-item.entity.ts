@@ -1,5 +1,6 @@
 import { Entity, Column, ManyToOne } from 'typeorm'
 import { BaseEntity } from './base.entity'
+// eslint-disable-next-line import/no-cycle
 import { Restaurant } from './restaurant.entity'
 
 @Entity()
