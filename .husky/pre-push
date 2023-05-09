@@ -1,0 +1,15 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/common.sh"
+
+prepush(){
+  yarn format && yarn lint && yarn build
+}
+
+# This is done, because we need to format, lint & build the front-end before push
+cd ./frontend
+prepush
+
+# This is done, because we need to format, lint & build the back-end before push
+cd ../backend
+prepush

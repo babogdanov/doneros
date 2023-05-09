@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 
+import useLogout from '../hooks/useLogout'
+
 const Layout = () => {
+  const onLogout = useLogout()
+
   return (
     <>
       <nav className='w-full h-20 bg-gray-900'>
@@ -15,6 +19,7 @@ const Layout = () => {
           <Link to='/register'>
             <li className='text-gray-50'>Registration</li>
           </Link>
+          <button onClick={onLogout}>Logout</button>
         </ul>
       </nav>
       <main className='p-10'>
