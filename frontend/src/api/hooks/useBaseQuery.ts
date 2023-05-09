@@ -1,5 +1,4 @@
 import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query'
-
 import fetchApi, { FetchParams } from '../fetch-api'
 import { ApiError } from '../../types/api'
 

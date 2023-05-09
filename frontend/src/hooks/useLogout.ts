@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 
-import { AUTH_QUERY_KEY } from '../api/hooks/queries/auth/useSyncQuery'
+import { AUTH_QUERY_KEY } from '../api/hooks/auth/queries/useSyncQuery'
 import { clearUser } from '../utils/local-storage.utils'
 
 const useLogout = () => {
