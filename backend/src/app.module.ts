@@ -5,6 +5,7 @@ import { getConnectionOptions } from 'typeorm'
 import * as Joi from 'joi'
 
 import { AuthModule } from './api/auth/auth.module'
+import { RestaurantModule } from '@api/restaurant/restaurant.module'
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { AuthModule } from './api/auth/auth.module'
     }),
     // App Modules
     AuthModule,
+    RestaurantModule
   ],
   controllers: [],
   providers: [],

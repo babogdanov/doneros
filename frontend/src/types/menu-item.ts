@@ -1,3 +1,14 @@
+type Restaurant = {
+  id: number
+  name: string
+  description: string
+  address: string
+}
+
+export type RestaurantResponse = {
+  restaurants: Restaurant[]
+}
+
 
 export class MenuItem {
   constructor(
