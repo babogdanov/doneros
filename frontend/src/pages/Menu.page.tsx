@@ -1,10 +1,7 @@
 import MenuItem from '../components/common/MenuItem'
 
 const Menu = () => {
-  return (
-   <MenuItem/>
-  )
+  return <MenuItem />
 }
 
 export default Menu
-

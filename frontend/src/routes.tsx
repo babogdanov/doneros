@@ -20,7 +20,7 @@ const AppRoutes = () => {
         <Route path='/restaurants' element={<RestaurantList />} />
         <Route path='/restaurants/:id' element={<Restaurant />} />
         <Route element={<ProtectedRoute />}>
-           <Route path='/test' element={<div>Тука е само за избрани. </div>} /> 
+          <Route path='/test' element={<div>Тука е само за избрани. </div>} />
         </Route>
         <Route path='*' element={<Navigate to='/' replace />} />
       </Route>

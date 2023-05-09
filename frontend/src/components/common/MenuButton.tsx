@@ -7,5 +7,5 @@ const MenuButton = () => (
     </button>
   </Link>
 )
-  
+
 export default MenuButton

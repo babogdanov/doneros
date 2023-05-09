@@ -15,7 +15,7 @@ export class Restaurant extends BaseEntity {
   address: string
 
   @OneToMany(() => MenuItem, (menuItem) => menuItem.restaurant, {
-    eager: true
+    eager: true,
   })
   menuItems: MenuItem[]
 }

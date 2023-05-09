@@ -18,24 +18,29 @@ export class RestaurantService {
     const restaurants = await this.restaurantRepository.find()
     return restaurants
   }
-  
+
   async getRestaurant(id: number) {
     const restaurant = await this.restaurantRepository.findOne({ id })
-    
+
     if (!restaurant) {
       throw new NotFoundException('User not found.')
     }
-  
+
     return restaurant
   }
 
   async createRestaurant(createRestaurantDto: CreateRestaurantDto) {
-    const restaurant = await this.restaurantRepository.create({ ...createRestaurantDto }).save()
+    const restaurant = await this.restaurantRepository
+      .create({ ...createRestaurantDto })
+      .save()
     return restaurant
   }
 
   async updateRestaurant(id: number, updateRestaurantDto: UpdateRestaurantDto) {
-    const restaurant = await this.restaurantRepository.update({ id }, { ...updateRestaurantDto })
+    const restaurant = await this.restaurantRepository.update(
+      { id },
+      { ...updateRestaurantDto },
+    )
     return restaurant
   }
 

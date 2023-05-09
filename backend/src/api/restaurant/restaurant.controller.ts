@@ -1,7 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { RestaurantService } from './restaurant.service';
-import { CreateRestaurantDto } from './dto/create-restaurant.dto';
-import { UpdateRestaurantDto } from './dto/update-restaurant.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common'
+import { RestaurantService } from './restaurant.service'
+import { CreateRestaurantDto } from './dto/create-restaurant.dto'
+import { UpdateRestaurantDto } from './dto/update-restaurant.dto'
 
 @Controller('restaurant')
 export class RestaurantController {
@@ -9,31 +17,39 @@ export class RestaurantController {
 
   @Get()
   async getAll() {
-    const restaurants = await this.restaurantService.getAllRestaurant();
+    const restaurants = await this.restaurantService.getAllRestaurant()
     return { restaurants }
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    const restaurant= await this.restaurantService.getRestaurant(+id);
+    const restaurant = await this.restaurantService.getRestaurant(+id)
     return restaurant
   }
 
   @Post()
   async create(@Body() createRestaurantDto: CreateRestaurantDto) {
-    const restaurant = await this.restaurantService.createRestaurant(createRestaurantDto);
+    const restaurant = await this.restaurantService.createRestaurant(
+      createRestaurantDto,
+    )
     return restaurant
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateRestaurantDto: UpdateRestaurantDto) {
-    const restaurant = await this.restaurantService.updateRestaurant(+id, updateRestaurantDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateRestaurantDto: UpdateRestaurantDto,
+  ) {
+    const restaurant = await this.restaurantService.updateRestaurant(
+      +id,
+      updateRestaurantDto,
+    )
     return restaurant
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    const restaurant = await this.restaurantService.removeRestaurant(+id);
+    const restaurant = await this.restaurantService.removeRestaurant(+id)
     return restaurant
   }
 }

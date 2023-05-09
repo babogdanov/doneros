@@ -9,7 +9,6 @@ export type RestaurantResponse = {
   restaurants: Restaurant[]
 }
 
-
 export class MenuItem {
   constructor(
     public id: number,
