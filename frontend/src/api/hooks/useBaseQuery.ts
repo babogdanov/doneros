@@ -1,7 +1,7 @@
 import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query'
 
-import fetchApi, { FetchParams } from '../../fetch-api'
-import { ApiError } from '../../../types/api'
+import fetchApi, { FetchParams } from '../fetch-api'
+import { ApiError } from '../../types/api'
 
 interface BaseQueryParams<TRes, TErr> {
   apiParams: Omit<FetchParams, 'body'>

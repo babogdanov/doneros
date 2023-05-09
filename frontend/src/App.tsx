@@ -1,4 +1,4 @@
-import useSyncQuery from './api/hooks/queries/auth/useSyncQuery'
+import useSyncQuery from './api/hooks/auth/queries/useSyncQuery'
 import LoadingSpinner from './components/common/LoadingSpinner'
 import AppRoutes from './routes'
 

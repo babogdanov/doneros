@@ -1,7 +1,7 @@
 import { UseMutationOptions, UseMutationResult, useMutation } from '@tanstack/react-query'
 
-import fetchApi, { FetchParams } from '../../fetch-api'
-import { ApiError } from '../../../types/api'
+import fetchApi, { FetchParams } from '../fetch-api'
+import { ApiError } from '../../types/api'
 
 interface BaseMutationParams<TRes, TErr, TReq> {
   apiParams: FetchParams

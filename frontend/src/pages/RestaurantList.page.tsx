@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import fetchApi from '../api/fetch-api'
-import useRestaurants from '../api/hooks/queries/restaurant/useRestaurants'
+import useRestaurants from '../api/hooks/restaurant/queries/useRestaurants'
 
 const RestaurantList = () => {
   const { data, isLoading, isError, error } = useRestaurants()

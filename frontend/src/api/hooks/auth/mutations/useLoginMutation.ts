@@ -1,4 +1,4 @@
-import useBaseMutation from '../useBaseMutation'
+import useBaseMutation from '../../useBaseMutation'
 import { LoginRequest, LoginResponse } from '../../../../types/user'
 
 const useLoginMutation = () => {

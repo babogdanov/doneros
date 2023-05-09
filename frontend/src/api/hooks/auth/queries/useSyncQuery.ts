@@ -1,4 +1,4 @@
-import useBaseQuery from '../useBaseQuery'
+import useBaseQuery from '../../useBaseQuery'
 import { LoginResponse } from '../../../../types/user'
 
 const AUTH_POLLING_TIME = 5 * 60 * 1000 + 1000 // 5 min + 1 s in ms; should be more than back-end JWT TTL time
