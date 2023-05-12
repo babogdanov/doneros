@@ -1,0 +1,53 @@
+name: Deploy
+
+on: 
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.EC2_HOSTNAME }}
+          REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+          TARGET: /home/
+          EXCLUDE: "/dist/, /node_modules/"
+           SCRIPT_AFTER: |
+            yarn
+            yarn build
+            yarn start:prod
+
+  deploy-frontend:
+     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build frontend
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - run: yarn
+    - run: yarn build
+    - name: Deploy to S3
+    - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.S3_BUCKET_NAME }}
+          source_dir: 'dist'
+          destination_dir: 'dist'
