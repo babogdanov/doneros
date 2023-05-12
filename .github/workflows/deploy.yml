@@ -35,18 +35,27 @@ jobs:
         working-directory: ./frontend
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build frontend
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-    - run: yarn
-    - run: yarn build
-    - uses: shallwefootball/s3-upload-action@master
-      name: Deploy to S3
-      with:
-        aws_key_id: ${{ secrets.AWS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-        aws_bucket: ${{ secrets.S3_BUCKET_NAME }}
-        source_dir: 'dist'
-        destination_dir: 'dist'
+     - uses: actions/checkout@v3
+     - name: Cache modules
+       uses: actions/cache@v1
+       id: yarn-cache
+       with:
+         path: node_modules
+         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+         restore-keys: ${{ runner.os }}-yarn-
+     - name: Configure AWS credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+         aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+         aws-region: us-east-1
+     - name: Use Node.js 18.x
+       uses: actions/setup-node@v3
+       with:
+         node-version: 18.x
+     - name: Install dependencies
+       run: yarn
+     - name: Build
+       run: yarn build
+     - name: Deploy
+       run: aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}
