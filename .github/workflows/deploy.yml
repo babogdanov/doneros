@@ -1,0 +1,57 @@
+name: Deploy
+
+on: 
+  push:
+    branches: [main]
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+    - name: Checkout backend
+      uses: actions/checkout@v3
+
+    - name: Deploy backend to EC2
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_BACKEND_SSH_KEY }}
+          SOURCE: "./backend"
+          REMOTE_HOST: ${{ secrets.EC2_BACKEND_HOSTNAME }}
+          REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+          TARGET: ${{ secrets.EC2_DESTINATION_DIR }}
+          SCRIPT_AFTER: |
+            kill $(lsof -t -i:${{ secrets.BACKEND_PORT }})
+            cd ${{ secrets.EC2_DESTINATION_DIR}}/backend
+            yarn --prod
+            yarn build
+            yarn start:prod
+
+  deploy-frontend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+    - name: Checkout frontend
+      uses: actions/checkout@v3
+
+    - name: Deploy frontend to EC2
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_FRONTEND_SSH_KEY }}
+          SOURCE: "./frontend"
+          REMOTE_HOST: ${{ secrets.EC2_FRONTEND_HOSTNAME }}
+          REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+          TARGET: ${{ secrets.EC2_DESTINATION_DIR }}
+          SCRIPT_AFTER: |
+            kill $(lsof -t -i:${{ secrets.FRONTEND_PORT }})
+            cd ${{ secrets.EC2_DESTINATION_DIR}}/frontend
+            yarn --prod
+            yarn start
