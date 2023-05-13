@@ -25,6 +25,7 @@ jobs:
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
           TARGET: ${{ secrets.EC2_DESTINATION_DIR }}
           SCRIPT_AFTER: |
+            kill $(lsof -t -i:${{ secrets.BACKEND_PORT }})
             cd ${{ secrets.EC2_DESTINATION_DIR}}/backend
             yarn
             yarn build
@@ -50,6 +51,7 @@ jobs:
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
           TARGET: ${{ secrets.EC2_DESTINATION_DIR }}
           SCRIPT_AFTER: |
+            kill $(lsof -t -i:${{ secrets.FRONTEND_PORT }})
             cd ${{ secrets.EC2_DESTINATION_DIR}}/frontend
             yarn
             yarn start
