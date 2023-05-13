@@ -25,7 +25,7 @@ jobs:
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
           TARGET: ${{ secrets.EC2_DESTINATION_DIR }}
           SCRIPT_AFTER: |
-            cd ${{ secrets.EC2_DESTINATION_DIR}}
+            cd ${{ secrets.EC2_DESTINATION_DIR}}/backend
             yarn
             yarn build
             yarn start:prod
@@ -50,6 +50,6 @@ jobs:
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
           TARGET: ${{ secrets.EC2_DESTINATION_DIR }}
           SCRIPT_AFTER: |
-            cd ${{ secrets.EC2_DESTINATION_DIR}}
+            cd ${{ secrets.EC2_DESTINATION_DIR}}/frontend
             yarn
             yarn start
