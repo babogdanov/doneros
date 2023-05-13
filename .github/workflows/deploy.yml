@@ -13,15 +13,17 @@ jobs:
         working-directory: ./backend
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: easingthemes/ssh-deploy@main
+    - name: Checkout backend
+      uses: actions/checkout@v3
+
+    - name: Deploy backend to EC2
+      uses: easingthemes/ssh-deploy@main
       env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          ARGS: "-rlgoDzvc -i --delete"
-          SOURCE: "dist/"
+          SOURCE: "./"
           REMOTE_HOST: ${{ secrets.EC2_HOSTNAME }}
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
-          TARGET: /home/
+          TARGET: "/home/ec2-user/"
           SCRIPT_AFTER: |
             yarn
             yarn build
@@ -35,27 +37,17 @@ jobs:
         working-directory: ./frontend
 
     steps:
-     - uses: actions/checkout@v3
-     - name: Cache modules
-       uses: actions/cache@v1
-       id: yarn-cache
-       with:
-         path: node_modules
-         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-         restore-keys: ${{ runner.os }}-yarn-
-     - name: Configure AWS credentials
-       uses: aws-actions/configure-aws-credentials@v1
-       with:
-         aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
-         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-         aws-region: us-east-1
-     - name: Use Node.js 18.x
-       uses: actions/setup-node@v3
-       with:
-         node-version: 18.x
-     - name: Install dependencies
-       run: yarn
-     - name: Build
-       run: yarn build
-     - name: Deploy
-       run: aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}
+    - name: Checkout frontend
+      uses: actions/checkout@v3
+
+    - name: Deploy frontend to EC2
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SOURCE: "./"
+          REMOTE_HOST: ${{ secrets.EC2_HOSTNAME }}
+          REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+          TARGET: "/home/ec2-user/"
+          SCRIPT_AFTER: |
+            yarn
+            yarn start
