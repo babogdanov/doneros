@@ -27,7 +27,7 @@ jobs:
           SCRIPT_AFTER: |
             kill $(lsof -t -i:${{ secrets.BACKEND_PORT }})
             cd ${{ secrets.EC2_DESTINATION_DIR}}/backend
-            yarn
+            yarn --prod
             yarn build
             yarn start:prod
 
@@ -53,5 +53,5 @@ jobs:
           SCRIPT_AFTER: |
             kill $(lsof -t -i:${{ secrets.FRONTEND_PORT }})
             cd ${{ secrets.EC2_DESTINATION_DIR}}/frontend
-            yarn
+            yarn --prod
             yarn start
