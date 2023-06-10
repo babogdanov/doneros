@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import useRestaurants from '../api/hooks/restaurant/queries/useRestaurants'
 
 const RestaurantList = () => {
@@ -12,7 +13,9 @@ const RestaurantList = () => {
   return (
     <ul>
       {data?.restaurants.map((restaurant, index) => (
-        <li key={index}> {restaurant.name} </li>
+        <Link to={`/restaurants/${index + 1}`} key={index}>
+          <li key={index}> {restaurant.name} </li>
+        </Link>
       ))}
     </ul>
   )

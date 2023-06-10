@@ -1,10 +1,10 @@
-import MenuButton from '../components/common/MenuButton'
+import RestaurantListButton from '../components/common/RestaurantListButton'
 
 const Home = () => {
   return (
     <div>
       <div>Hi there</div>
-      <MenuButton />
+      <RestaurantListButton />
     </div>
   )
 }

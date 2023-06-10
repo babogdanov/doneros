@@ -1,20 +1,26 @@
-type Restaurant = {
-  id: number
-  name: string
-  description: string
-  address: string
+import { Restaurant } from './restaurant'
+
+export type MenuItem = {
+    id: number,
+    name: string,
+    description: string,
+    pictureUrl: string,
+    restaurant: Restaurant
 }
 
-export type RestaurantResponse = {
-  restaurants: Restaurant[]
+export type MenuItemRequest = {
+    name: string,
+    description: string,
+    pictureUrl: string
+} 
+
+export type MenuItemResponse = {
+    menuItem: MenuItem
 }
 
-export class MenuItem {
-  constructor(
-    public id: number,
-    public title: string,
-    public content: string,
-    public imageUrl: string,
-    public active = true,
-  ) {}
+export type CreateMenuItemRequest = {
+    name: string,
+    description: string,
+    pictureUrl: string,
+    restaurant: Restaurant | undefined
 }

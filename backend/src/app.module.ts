@@ -5,6 +5,7 @@ import { getConnectionOptions } from 'typeorm'
 import * as Joi from 'joi'
 
 import { RestaurantModule } from '@api/restaurant/restaurant.module'
+import { MenuItemModule } from '@api/menu-item/menu-item.module'
 import { AuthModule } from './api/auth/auth.module'
 
 @Module({
@@ -40,6 +41,7 @@ import { AuthModule } from './api/auth/auth.module'
     // App Modules
     AuthModule,
     RestaurantModule,
+    MenuItemModule,
   ],
   controllers: [],
   providers: [],

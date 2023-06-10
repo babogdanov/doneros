@@ -1,8 +1,8 @@
-import { RestaurantResponse } from '../../../../types/menu-item'
+import { GetRestaurantsResponse } from '../../../../types/restaurant'
 import useBaseQuery from '../../useBaseQuery'
 
 const useRestaurants = () =>
-  useBaseQuery<RestaurantResponse>({
+  useBaseQuery<GetRestaurantsResponse>({
     apiParams: { path: '/restaurant' },
   })
 
