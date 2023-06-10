@@ -3,7 +3,7 @@ import useBaseMutation from '../useBaseMutation'
 
 const useCreateMenuItem = () => {
   return useBaseMutation<CreateMenuItemRequest, MenuItemResponse>({
-    apiParams: { path: '/menu-item', method: 'POST'},
+    apiParams: { path: '/menu-item', method: 'POST' },
   })
 }
 

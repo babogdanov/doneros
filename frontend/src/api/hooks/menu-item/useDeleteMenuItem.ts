@@ -3,7 +3,7 @@ import useBaseMutation from '../useBaseMutation'
 
 const useDeleteMenuItem = (id: string) => {
   return useBaseMutation<undefined, MenuItemResponse>({
-    apiParams: { path: `/menu-item/${id}`, method: 'DELETE'},
+    apiParams: { path: `/menu-item/${id}`, method: 'DELETE' },
   })
 }
 

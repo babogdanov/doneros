@@ -5,12 +5,12 @@ import useDeleteMenuItem from '../../api/hooks/menu-item/useDeleteMenuItem'
 type MenuItemProps = {
   menuItem: MenuItem
 }
-  
-const MenuItemCard = ({menuItem}: MenuItemProps) => {
+
+const MenuItemCard = ({ menuItem }: MenuItemProps) => {
   const { id, name, description, pictureUrl } = menuItem
   const { mutate: deleteMenuItem } = useDeleteMenuItem(`${id}`)
   const navigate = useNavigate()
-       
+
   return (
     <div className='bg-white shadow-lg rounded-lg w-96 m-5 mb-16 font-sans text-center'>
       <div className='w-full h-1/6 text-2xl'>{name}</div>
@@ -27,7 +27,10 @@ const MenuItemCard = ({menuItem}: MenuItemProps) => {
       </button>
       <button
         className='w-1/2 h-10 bg-red-500 hover:bg-red-600 text-white hover:text-white'
-        onClick={() => {deleteMenuItem(undefined); window.location.reload()}}
+        onClick={() => {
+          deleteMenuItem(undefined)
+          window.location.reload()
+        }}
       >
         Изтриване
       </button>

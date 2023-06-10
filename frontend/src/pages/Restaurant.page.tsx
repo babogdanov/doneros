@@ -16,7 +16,7 @@ const Restaurant = () => {
   if (isError) {
     return <div>{error}</div>
   }
-  
+
   return (
     <div className='flex flex-wrap'>
       {data.restaurant.menuItems.map((item) => (

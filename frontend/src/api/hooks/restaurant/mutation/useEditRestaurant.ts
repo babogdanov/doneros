@@ -3,7 +3,7 @@ import useBaseMutation from '../../useBaseMutation'
 
 const useEditRestaurant = (id: string) => {
   return useBaseMutation<RestaurantRequest, RestaurantResponse>({
-    apiParams: { path: `/restaurants/${id}`, method: 'PUT'},
+    apiParams: { path: `/restaurants/${id}`, method: 'PUT' },
   })
 }
 
