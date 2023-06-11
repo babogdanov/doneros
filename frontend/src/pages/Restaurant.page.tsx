@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import useRestaurantMenu from '../api/hooks/menu-item/useMenuItem'
 import LoadingSpinner from '../components/common/LoadingSpinner'
-import MenuItemCard from '../components/common/MenuItemCard'
+import MenuItemCard from '../components/MenuItem/MenuItemCard'
 import useRestaurant from '../api/hooks/restaurant/queries/useRestaurant'
 
 const Restaurant = () => {
@@ -14,7 +13,7 @@ const Restaurant = () => {
   }
 
   if (isError) {
-    return <div>{error}</div>
+    return <div>{JSON.stringify(error)}</div>
   }
 
   return (
@@ -22,7 +21,8 @@ const Restaurant = () => {
       {data.restaurant.menuItems.map((item) => (
         <MenuItemCard key={item.id} menuItem={item} />
       ))}
-      <div className='bg-white shadow-lg rounded-lg w-96 m-5 flex justify-center items-center font-sans text-center'>
+      <div className='flex flex-col bg-white shadow-lg rounded-lg w-96 m-5 justify-center items-center font-sans text-center'>
+        <label> Създаване </label>
         <button
           className='bg-orange-400 hover:bg-orange-500 text-white font-bold text-3xl rounded focus:outline-none focus:shadow-outline'
           onClick={() => navigate(`/create-menu-item/${id}`)}
