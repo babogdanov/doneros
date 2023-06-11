@@ -1,9 +1,18 @@
 /* General-use types */
 
+export enum UserRole {
+  USER = 'user',
+  COURIER = 'courier',
+  MANAGER = 'manager',
+  ADMIN = 'admin',
+}
+
 export type User = {
   id: number
   email: string
   accessToken: string | null
+  phoneNumber: string
+  role: UserRole
 }
 
 /* API types */
