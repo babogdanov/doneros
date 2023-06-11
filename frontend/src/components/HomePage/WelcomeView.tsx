@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
-import background from '../../resources/welcomeTab1.png'
+import background from '../../../resources/welcomeTab1.png'
 
-const Home = () => {
+const WelcomeView = () => {
   return (
     <>
       <div
-        className='flex flex-col justify-center items-center w-full h-screen'
+        className='flex flex-col justify-center items-center w-full h-full '
         style={{
           backgroundImage: `url(${background})`,
+          backgroundPosition: 'center center',
           backgroundSize: '100% 100%',
         }}
       >
@@ -18,7 +19,7 @@ const Home = () => {
             ingredients.
           </p>
           <Link to='/restaurants'>
-            <div className='flex flex-col justify-center items-center text-center text-white text-2xl hover:text-3xl bg-yellow-500 h-20 w-60 rounded-lg'>
+            <div className='flex flex-col justify-center items-center text-center text-slate-300 hover:text-slate-50 text-2xl hover:text-3xl bg-yellow-500 h-20 w-60 rounded-lg'>
               ORDER NOW!
             </div>
           </Link>
@@ -28,4 +29,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default WelcomeView
