@@ -6,6 +6,7 @@ import useRestaurant from '../api/hooks/restaurant/queries/useRestaurant'
 const Restaurant = () => {
   const navigate = useNavigate()
   const { id } = useParams()
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const { data, isLoading, isError, error } = useRestaurant(id!)
 
   if (isLoading) {
@@ -18,7 +19,8 @@ const Restaurant = () => {
 
   return (
     <div className='flex flex-wrap'>
-      {data.restaurant.menuItems.map((item) => (
+      {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
+      {data!.restaurant.menuItems.map((item) => (
         <MenuItemCard key={item.id} menuItem={item} />
       ))}
       <div className='flex flex-col bg-white shadow-lg rounded-lg w-96 m-5 justify-center items-center font-sans text-center'>

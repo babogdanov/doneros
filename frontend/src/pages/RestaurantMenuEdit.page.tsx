@@ -27,7 +27,8 @@ const RestaurantMenuEdit = () => {
 
   return (
     <MenuItemForm
-      initialData={data.menuItem}
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      initialData={data!.menuItem}
       handleSubmit={handleSubmit}
       submitLabel='Редактиране'
     />
