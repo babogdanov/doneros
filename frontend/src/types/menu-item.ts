@@ -8,6 +8,8 @@ export type MenuItem = {
   restaurant: Restaurant
 }
 
+export type MenuItemEditable = Omit<MenuItem, 'id' | 'restaurant'>
+
 export type MenuItemRequest = {
   name: string
   description: string
@@ -22,5 +24,5 @@ export type CreateMenuItemRequest = {
   name: string
   description: string
   pictureUrl: string
-  restaurant: Restaurant | undefined
+  restaurantId: string
 }
