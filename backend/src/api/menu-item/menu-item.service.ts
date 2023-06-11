@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+
 import { MenuItem } from '@entities/menu-item.entity'
-import { UpdateMenuItemDto } from './dto/update-menu-item.dto'
+import { Restaurant } from '@entities/restaurant.entity'
+import { createInstance } from '@utils/class.utils'
 import { CreateMenuItemDto } from './dto/create-menu-item.dto'
+import { UpdateMenuItemDto } from './dto/update-menu-item.dto'
 
 @Injectable()
 export class MenuItemService {
@@ -13,23 +16,40 @@ export class MenuItemService {
     private readonly menuItemRepository: Repository<MenuItem>,
   ) {}
 
-  create(createMenuItemDto: CreateMenuItemDto) {
-    return this.menuItemRepository.create({ ...createMenuItemDto}).save()
+  async create(createMenuItemDto: CreateMenuItemDto) {
+    const { restaurantId, ...menuItemDto } = createMenuItemDto
+    const restaurantDto = createInstance(Restaurant, { id: +restaurantId })
+    const { id } = await this.menuItemRepository
+      .create({ ...menuItemDto, restaurant: restaurantDto })
+      .save()
+    const res = await this.findOne(id)
+
+    return res
   }
 
-  findAll() {
-    return `This action returns all menuItem`
+  async findAll() {
+    const res = await this.menuItemRepository.find({
+      relations: ['restaurant'],
+    })
+    return res
   }
 
-  findOne(id: number) {
-    return this.menuItemRepository.findOne({ id }, { relations: ['restaurant']})
+  async findOne(id: number) {
+    const res = await this.menuItemRepository.findOne(
+      { id },
+      { relations: ['restaurant'] },
+    )
+    return res
   }
 
-  update(id: number, updateMenuItemDto: UpdateMenuItemDto) {
-    return this.menuItemRepository.update(id, updateMenuItemDto)
+  async update(id: number, updateMenuItemDto: UpdateMenuItemDto) {
+    await this.menuItemRepository.update(id, updateMenuItemDto)
+    const res = await this.findOne(id)
+    return res
   }
 
-  remove(id: number) {
-    return this.menuItemRepository.delete(id)
+  async remove(id: number) {
+    const res = this.menuItemRepository.delete(id)
+    return res
   }
 }

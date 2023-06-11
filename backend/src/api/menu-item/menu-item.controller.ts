@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common'
+
 import { MenuItemService } from './menu-item.service'
 import { CreateMenuItemDto } from './dto/create-menu-item.dto'
 import { UpdateMenuItemDto } from './dto/update-menu-item.dto'
@@ -9,14 +10,14 @@ export class MenuItemController {
 
   @Post()
   async create(@Body() createMenuItemDto: CreateMenuItemDto) {
-    console.log(createMenuItemDto)
     const menuItem = await this.menuItemService.create(createMenuItemDto)
     return { menuItem }
   }
 
   @Get()
-  findAll() {
-    return this.menuItemService.findAll()
+  async findAll() {
+    const menuItems = await this.menuItemService.findAll()
+    return { menuItems }
   }
 
   @Get(':id')
