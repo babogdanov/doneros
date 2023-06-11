@@ -4,6 +4,13 @@ import { Entity, Column, OneToOne, BeforeInsert, BeforeUpdate } from 'typeorm'
 import { BaseEntity } from './base.entity'
 import { ResetToken } from './reset-token.entity' // eslint-disable-line
 
+enum UserRole {
+  USER = 'user',
+  COURIER = 'courier',
+  MANAGER = 'manager',
+  ADMIN = 'admin',
+}
+
 @Entity('users', {
   orderBy: {
     id: 'ASC',
@@ -15,6 +22,16 @@ export class User extends BaseEntity {
 
   @Column()
   password: string
+
+  @Column()
+  phoneNumber: string
+
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.USER,
+  })
+  role: UserRole
 
   @OneToOne(() => ResetToken)
   resetToken: ResetToken
