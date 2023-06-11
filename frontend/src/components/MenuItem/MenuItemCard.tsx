@@ -20,13 +20,13 @@ const MenuItemCard = ({ menuItem }: MenuItemProps) => {
         Изберете
       </button>
       <button
-        className='w-1/2 h-10 bg-orange-400 hover:bg-orange-600 text-white hover:text-white'
+        className='w-1/2 bg-orange-400 hover:bg-orange-600 text-white hover:text-white'
         onClick={() => navigate(`/edit-menu-item/${id}`)}
       >
         Редакция
       </button>
       <button
-        className='w-1/2 h-10 bg-red-500 hover:bg-red-600 text-white hover:text-white'
+        className='w-1/2 bg-red-500 hover:bg-red-600 text-white hover:text-white'
         onClick={() => {
           deleteMenuItem(undefined)
           window.location.reload()
