@@ -17,6 +17,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "strictPropertyInitialization": false,
+    "noImplicitAny": false,
     "strict": true,
     "baseUrl": ".",
     "paths": {
