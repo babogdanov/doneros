@@ -14,14 +14,27 @@ let TEST_MENU_ITEMS_DATA: Partial<MenuItem>[] = [
   {
     name: 'Ушички в масло',
     description: 'Мазнички свински ушички приготвени в масло',
-    pictureUrl: 'http://doyoulovetoeat.com/wp-content/uploads/2019/12/DSC_0257.jpg',
+    pictureUrl:
+      'http://doyoulovetoeat.com/wp-content/uploads/2019/12/DSC_0257.jpg',
   },
 ]
 
 let TEST_MENU_ITEMS_DATA_2: Partial<MenuItem>[] = [
-  { name: 'Дюнер - малък', description: 'Мазен дюнер', pictureUrl: 'https://www.aladinfoods.bg/files/images/294/light_duner.png' },
-  { name: 'Дюнер - среден', description: 'Мазен дюнер', pictureUrl: 'https://www.aladinfoods.bg/files/images/294/light_duner.png' },
-  { name: 'Дюнер - голям', description: 'Мазен дюнер', pictureUrl: 'https://www.aladinfoods.bg/files/images/294/light_duner.png' },
+  {
+    name: 'Дюнер - малък',
+    description: 'Мазен дюнер',
+    pictureUrl: 'https://www.aladinfoods.bg/files/images/294/light_duner.png',
+  },
+  {
+    name: 'Дюнер - среден',
+    description: 'Мазен дюнер',
+    pictureUrl: 'https://www.aladinfoods.bg/files/images/294/light_duner.png',
+  },
+  {
+    name: 'Дюнер - голям',
+    description: 'Мазен дюнер',
+    pictureUrl: 'https://www.aladinfoods.bg/files/images/294/light_duner.png',
+  },
 ]
 
 export class menu1682857781855 implements MigrationInterface {

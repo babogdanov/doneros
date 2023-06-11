@@ -1,8 +1,7 @@
 export class CreateRestaurantDto {
-    name: string;
+  name: string
 
-    description: string;
-  
-    address: string;
-  
+  description: string
+
+  address: string
 }
