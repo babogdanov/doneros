@@ -14,7 +14,6 @@ import type { Request } from '@models/request'
 import type { UserWithAccessToken } from '@models/user-with-access-token'
 import { JwtAuthGuard } from '@guards/jwt.guard'
 import { LoginDto } from './dto/login.dto'
-
 import { AuthService } from './auth.service'
 
 @Controller('auth')

@@ -1,4 +1,4 @@
-import useBaseMutation from '../useBaseMutation'
+import useBaseMutation from '../../useBaseMutation'
 import { RegisterRequest, RegisterResponse } from '../../../../types/user'
 
 const useRegisterMutation = () => {

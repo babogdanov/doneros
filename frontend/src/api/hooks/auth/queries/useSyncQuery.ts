@@ -1,6 +1,6 @@
-import useBaseQuery from '../useBaseQuery'
 import { SyncResponse } from '../../../../types/user'
 import { clearUser, getUser } from '../../../../utils/local-storage.utils'
+import useBaseQuery from '../../useBaseQuery'
 
 export const AUTH_QUERY_KEY = ['/auth/sync']
 

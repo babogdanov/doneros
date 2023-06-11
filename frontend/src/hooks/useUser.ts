@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
-import useSyncQuery from '../api/hooks/queries/auth/useSyncQuery'
 import { clearUser, setUser } from '../utils/local-storage.utils'
+import useSyncQuery from '../api/hooks/auth/queries/useSyncQuery'
 
 const useUser = () => {
   const { data: user } = useSyncQuery()

@@ -31,6 +31,12 @@ const fetchApi = async (params: FetchParams) => {
     case 'POST':
       req = axiosInstance.post(`${rootUrl}${path}`, body)
       break
+    case 'PUT':
+      req = axiosInstance.put(`${rootUrl}${path}`, body)
+      break
+    case 'DELETE':
+      req = axiosInstance.delete(`${rootUrl}${path}`)
+      break
     default:
       req = axiosInstance.get(`${rootUrl}${path}`)
   }

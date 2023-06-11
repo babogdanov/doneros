@@ -6,4 +6,12 @@ export const ERROR = {
   register: {
     confirmPassword: 'Passwords do not match.',
   },
+  menuItem: {
+    nameRequired: "Please enter the menu item's name",
+    descriptionRequired: (length: number) =>
+      `Please enter a description of at least ${length} characters`,
+  },
+  generic: {
+    pictureUrlRequried: 'Please enter a valid picture URL',
+  },
 }

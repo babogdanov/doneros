@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
-import useLoginMutation from '../api/hooks/mutations/auth/useLoginMutation'
+import useLoginMutation from '../api/hooks/auth/mutations/useLoginMutation'
 import useValidation from '../hooks/useValidation'
 import { trimObjectStrings } from '../utils/string.utils'
 import { ERROR } from '../utils/error-message.constants'
