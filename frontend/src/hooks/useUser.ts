@@ -2,13 +2,14 @@ import { useEffect } from 'react'
 
 import { clearUser, setUser } from '../utils/local-storage.utils'
 import useSyncQuery from '../api/hooks/auth/queries/useSyncQuery'
-import { UserRole } from '../types/user'
+import { User, UserRole } from '../types/user'
 
-const initialState = {
+const initialState: User = {
   id: 0,
   email: '',
   phoneNumber: '',
   role: UserRole.USER,
+  accessToken: null,
 }
 const useUser = () => {
   const { data: user } = useSyncQuery()
