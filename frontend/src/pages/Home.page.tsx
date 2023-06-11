@@ -1,4 +1,4 @@
-import RestaurantListButton from '../components/common/RestaurantListButton'
+import RestaurantListButton from '../components/Restaurant/RestaurantListButton'
 
 const Home = () => {
   return (
