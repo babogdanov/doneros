@@ -18,7 +18,7 @@ const Restaurant = () => {
   }
 
   return (
-    <div className='flex flex-wrap'>
+    <>
       {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
       {data!.restaurant.menuItems.map((item) => (
         <MenuItemCard key={item.id} menuItem={item} />
@@ -32,7 +32,7 @@ const Restaurant = () => {
           +
         </button>
       </div>
-    </div>
+    </>
   )
 }
 
