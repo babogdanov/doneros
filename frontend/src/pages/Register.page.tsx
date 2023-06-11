@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 import useRegisterMutation from '../api/hooks/auth/mutations/useRegisterMutation'
@@ -13,7 +13,7 @@ const RegisterPage = () => {
     confirmPassword: '',
   })
 
-  const { mutate: register, error, isError, isSuccess } = useRegisterMutation()
+  const { mutate: register } = useRegisterMutation()
 
   const [isValid, errorMessage] = useValidation([
     {
@@ -45,17 +45,6 @@ const RegisterPage = () => {
 
     register({ email: trimmedForm.email, password: trimmedForm.password })
   }
-
-  useEffect(() => {
-    if (isError) {
-      // TODO: Extract me in a separate file in types/, check if there is a better type for statusCode
-      const errorMessage = error?.response?.data?.message
-      toast.error(errorMessage)
-    }
-    if (isSuccess) {
-      toast.success('You have registered successfully')
-    }
-  }, [error, isError, isSuccess])
 
   return (
     <>
