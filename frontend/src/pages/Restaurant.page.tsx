@@ -21,12 +21,12 @@ const Restaurant = () => {
     <>
       {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
       {data!.restaurant.menuItems.map((item) => (
-        <MenuItemCard key={item.id} menuItem={item} />
+        <MenuItemCard key={item.id} menuItem={item} addEnabled />
       ))}
-      <div className='flex flex-col bg-white shadow-lg rounded-lg w-96 m-5 justify-center items-center font-sans text-center'>
+      <div className='m-5 flex h-96 w-96 flex-col items-center justify-center rounded-lg bg-white text-center font-sans shadow-lg'>
         <label> Създаване </label>
         <button
-          className='bg-orange-400 hover:bg-orange-500 text-white font-bold text-3xl rounded focus:outline-none focus:shadow-outline'
+          className='rounded bg-orange-400 text-3xl font-bold text-white hover:bg-orange-500 focus:outline-none'
           onClick={() => navigate(`/create-menu-item/${id}`)}
         >
           +

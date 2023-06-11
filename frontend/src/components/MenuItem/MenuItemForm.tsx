@@ -66,17 +66,17 @@ const MenuItemForm = ({
   }, [initialData])
 
   return (
-    <div className='flex justify-center items-center h-fit'>
+    <div className='flex h-fit items-center justify-center'>
       <form
-        className='flex flex-col justify-center bg-white shadow-md rounded px-6 py-4'
+        className='flex flex-col justify-center rounded bg-white px-6 py-4 shadow-md'
         onSubmit={onSubmit}
       >
         <div>
-          <label className='block text-gray-700 text-sm font-bold' htmlFor='name'>
+          <label className='block text-sm font-bold text-gray-700' htmlFor='name'>
             Name
           </label>
           <input
-            className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
             id='name'
             type='text'
             placeholder='Enter item name'
@@ -87,13 +87,13 @@ const MenuItemForm = ({
         </div>
         <div>
           <label
-            className='block text-gray-700 text-sm font-bold mb-2'
+            className='mb-2 block text-sm font-bold text-gray-700'
             htmlFor='description'
           >
             Description
           </label>
           <textarea
-            className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
             id='description'
             placeholder='Enter item description'
             name='description'
@@ -103,13 +103,13 @@ const MenuItemForm = ({
         </div>
         <div>
           <label
-            className='block text-gray-700 text-sm font-bold mb-2'
+            className='mb-2 block text-sm font-bold text-gray-700'
             htmlFor='pictureUrl'
           >
             Picture
           </label>
           <input
-            className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
             id='pictureUrl'
             name='pictureUrl'
             value={pictureUrl}
@@ -117,7 +117,7 @@ const MenuItemForm = ({
           />
         </div>
         <button
-          className='bg-orange-400 hover:bg-orange-600 text-white font-bold rounded '
+          className='rounded bg-orange-400 font-bold text-white hover:bg-orange-600 '
           type='submit'
         >
           {submitLabel}
