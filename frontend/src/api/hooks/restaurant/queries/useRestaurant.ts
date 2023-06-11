@@ -1,4 +1,4 @@
-import { GetRestaurantsResponse, RestaurantResponse } from '../../../../types/restaurant'
+import { RestaurantResponse } from '../../../../types/restaurant'
 import useBaseQuery from '../../useBaseQuery'
 
 const useRestaurant = (id: string) =>

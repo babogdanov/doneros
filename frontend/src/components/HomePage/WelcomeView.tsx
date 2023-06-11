@@ -5,21 +5,21 @@ const WelcomeView = () => {
   return (
     <>
       <div
-        className='flex flex-col justify-center items-center w-full h-full '
+        className='flex h-full w-full flex-col items-center justify-center'
         style={{
           backgroundImage: `url(${background})`,
           backgroundPosition: 'center center',
           backgroundSize: '100% 100%',
         }}
       >
-        <div className='flex flex-col justify-center items-center text-center text-black py-16'>
-          <h1 className=' text-8xl  font-bold mb-8'>Welcome to Doneros</h1>
-          <p className='text-2x1'>
+        <div className='flex flex-col items-center justify-center py-16 text-center text-black'>
+          <h1 className='mb-8  text-8xl font-bold'>Welcome to Doneros</h1>
+          <p className='text-2xl'>
             Discover the taste of authentic doner kebab, made fresh daily with the finest
             ingredients.
           </p>
           <Link to='/restaurants'>
-            <div className='flex flex-col justify-center items-center text-center text-slate-300 hover:text-slate-50 text-2xl hover:text-3xl bg-yellow-500 h-20 w-60 rounded-lg'>
+            <div className='flex h-20 w-60 flex-col items-center justify-center rounded-lg bg-yellow-500 text-center text-2xl text-slate-300 hover:text-3xl hover:text-slate-50'>
               ORDER NOW!
             </div>
           </Link>
