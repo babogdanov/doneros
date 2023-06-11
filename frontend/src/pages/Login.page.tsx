@@ -48,9 +48,7 @@ const LoginPage = () => {
       >
         <div className='w-full max-w-xl bg-transparentrounded-2xl p-8'>
           <div className='text-center'>
-            <h1 className='text-yellow-500 font-bold text-5xl'>
-              Login
-            </h1>
+            <h1 className='text-yellow-500 font-bold text-5xl'>Login</h1>
           </div>
           <div className='mt-8'>
             <input
