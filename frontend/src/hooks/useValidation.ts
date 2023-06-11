@@ -1,6 +1,6 @@
 interface ValidationInput {
-  input: string | string[]
-  validationFunc: (input: string | string[]) => boolean
+  input: string
+  validationFunc: (input: string) => boolean
   errorMessage: string
 }
 
