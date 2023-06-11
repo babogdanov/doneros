@@ -6,7 +6,7 @@ import useValidation from '../hooks/useValidation'
 import { trimObjectStrings } from '../utils/string.utils'
 import { ERROR } from '../utils/error-message.constants'
 
-const LoginPage = () => {
+const Login = () => {
   const [formState, setFormState] = useState({
     email: '',
     password: '',
@@ -43,19 +43,19 @@ const LoginPage = () => {
   return (
     <>
       <form
-        className='w-full h-full flex items-center justify-center'
+        className='flex h-full w-full items-center justify-center'
         onSubmit={handleSubmit}
       >
-        <div className='w-full max-w-xl bg-transparentrounded-2xl p-8'>
+        <div className='w-full max-w-xl rounded-2xl bg-transparent p-8'>
           <div className='text-center'>
-            <h1 className='text-yellow-500 font-bold text-5xl'>Login</h1>
+            <h1 className='text-5xl font-bold text-yellow-500'>Login</h1>
           </div>
           <div className='mt-8'>
             <input
               type='email'
               name='email'
               placeholder='Email'
-              className='block w-full bg-gray-800 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent'
+              className='block w-full rounded-lg bg-gray-800 text-gray-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-yellow-500'
               value={formState.email}
               onChange={(event) =>
                 setFormState((prevState) => ({
@@ -69,7 +69,7 @@ const LoginPage = () => {
               type='password'
               name='password'
               placeholder='Password'
-              className='w-full py-3 px-4 bg-yellow-500 text-gray-900 rounded-lg font-bold hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50'
+              className='w-full rounded-lg bg-yellow-500 px-4 py-3 font-bold text-gray-900 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500'
               value={formState.password}
               onChange={(event) =>
                 setFormState((prevState) => ({
@@ -81,7 +81,7 @@ const LoginPage = () => {
 
             <button
               type='submit'
-              className='w-full flex justify-center items-center text-2x1 py-3 px-4  rounded-lg font-bold  focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 text-slate-300 hover:text-slate-50 text-2xl hover:text-3xl bg-yellow-500 '
+              className='flex w-full items-center justify-center rounded-lg bg-yellow-500 px-4  py-3 text-2xl font-bold text-slate-300 hover:text-3xl hover:text-slate-50 focus:outline-none focus:ring-2 focus:ring-yellow-500'
             >
               Login
             </button>
@@ -92,4 +92,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default Login
