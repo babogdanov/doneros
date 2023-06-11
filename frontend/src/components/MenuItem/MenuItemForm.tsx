@@ -38,7 +38,7 @@ const MenuItemForm = ({
     },
     {
       input: formData.pictureUrl,
-      validationFunc: (input) => isValidUrl(input),
+      validationFunc: (input) => isValidUrl(input as string),
       errorMessage: ERROR.generic.pictureUrlRequried,
     },
   ])
