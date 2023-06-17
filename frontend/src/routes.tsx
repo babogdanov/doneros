@@ -1,15 +1,16 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import Layout from './layout/Layout'
+import ProtectedRoute from './layout/ProtectedRoute'
 import Home from './pages/Home.page'
 import Register from './pages/Register.page'
 import Login from './pages/Login.page'
-import ProtectedRoute from './layout/ProtectedRoutes'
 import RestaurantList from './pages/RestaurantList.page'
 import Restaurant from './pages/Restaurant.page'
 import RestaurantMenuEdit from './pages/RestaurantMenuEdit.page'
 import RestaurantMenuCreate from './pages/RestaurantMenuCreate.page'
 import Profile from './pages/Profile.page'
+import { UserRole } from './types/user'
 
 const AppRoutes = () => {
   return (
@@ -23,8 +24,28 @@ const AppRoutes = () => {
         <Route path='/edit-menu-item/:id' element={<RestaurantMenuEdit />} />
         <Route path='/create-menu-item/:id' element={<RestaurantMenuCreate />} />
         <Route element={<ProtectedRoute />}>
-          <Route path='/test' element={<div>Тука е само за избрани. </div>} />
+          <Route path='/test' element={<div>Тука е само за избрани потребители. </div>} />
           <Route path='/profile' element={<Profile />} />
+        </Route>
+        <Route
+          element={<ProtectedRoute allowedRoles={[UserRole.COURIER, UserRole.ADMIN]} />}
+        >
+          <Route
+            path='/home/courier'
+            element={<div>Тука е само за избрани куриери. </div>}
+          />
+          <Route path='/profile' element={<Profile />} />
+        </Route>
+        <Route
+          element={<ProtectedRoute allowedRoles={[UserRole.MANAGER, UserRole.ADMIN]} />}
+        >
+          <Route
+            path='/home/manager'
+            element={<div>Тука е само за избрани меринджеи. </div>}
+          />
+        </Route>
+        <Route element={<ProtectedRoute allowedRoles={[UserRole.ADMIN]} />}>
+          <Route path='/home/admin' element={<div>Тука е само за баш админи. </div>} />
         </Route>
         <Route path='*' element={<Navigate to='/' replace />} />
       </Route>
