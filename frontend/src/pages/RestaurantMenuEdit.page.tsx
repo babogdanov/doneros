@@ -22,7 +22,7 @@ const RestaurantMenuEdit = () => {
   }
 
   if (isError) {
-    return <div>{JSON.stringify(error)}</div>
+    return <div>Unable to load initial data.</div>
   }
 
   return (

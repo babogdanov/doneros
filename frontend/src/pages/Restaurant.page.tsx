@@ -7,14 +7,14 @@ const Restaurant = () => {
   const navigate = useNavigate()
   const { id } = useParams()
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const { data, isLoading, isError, error } = useRestaurant(id!)
+  const { data, isLoading, isError } = useRestaurant(id!)
 
   if (isLoading) {
     return <LoadingSpinner />
   }
 
   if (isError) {
-    return <div>{JSON.stringify(error)}</div>
+    return <div>Unable to load data.</div>
   }
 
   return (
