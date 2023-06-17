@@ -2,6 +2,7 @@ import { UseMutationOptions, UseMutationResult, useMutation } from '@tanstack/re
 
 import fetchApi, { FetchParams } from '../fetch-api'
 import { ApiError } from '../../types/api'
+import { toast } from 'react-toastify'
 
 interface BaseMutationParams<TRes, TErr, TReq> {
   apiParams: FetchParams
@@ -15,6 +16,8 @@ function useBaseMutation<TReq, TRes>(
     mutationKey: [apiParams.path],
     mutationFn: (body) => fetchApi({ ...apiParams, body }),
     ...builtInParams,
+    retry: false,
+    onError: (err) => toast.error(err.message),
   })
 }
 
