@@ -23,7 +23,7 @@ export class User extends BaseEntity {
   @Column()
   password: string
 
-  @Column()
+  @Column({ nullable: false, default: '' })
   phoneNumber: string
 
   @Column({
