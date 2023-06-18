@@ -1,4 +1,5 @@
 import { MenuItem } from './menu-item'
+import { User } from './user'
 
 export type Restaurant = {
   id: number
@@ -6,6 +7,7 @@ export type Restaurant = {
   description: string
   address: string
   menuItems: MenuItem[]
+  manager: User
 }
 
 export type GetRestaurantsResponse = {
