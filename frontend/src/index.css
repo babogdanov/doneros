@@ -552,3 +552,7 @@ there.
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {
 }
+
+.Toastify__toast-container {
+  @apply mt-28;
+}
