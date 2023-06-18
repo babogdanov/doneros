@@ -29,6 +29,18 @@ export class RestaurantService {
     return restaurant
   }
 
+  async getManagerRestaurant(managerId: number) {
+    const restaurant = await this.restaurantRepository.findOne({
+      where: { manager: { id: managerId } },
+    })
+
+    if (!restaurant) {
+      throw new NotFoundException('User not found.')
+    }
+
+    return restaurant
+  }
+
   async createRestaurant(createRestaurantDto: CreateRestaurantDto) {
     const restaurant = await this.restaurantRepository
       .create({ ...createRestaurantDto })

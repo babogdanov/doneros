@@ -25,6 +25,14 @@ export class RestaurantController {
     return { restaurants }
   }
 
+  @Get('/manager/:managerId')
+  async getForManagerId(@Param('managerId') managerId: number) {
+    const restaurant = await this.restaurantService.getManagerRestaurant(
+      managerId,
+    )
+    return { restaurant }
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const restaurant = await this.restaurantService.getRestaurant(+id)
