@@ -1,14 +1,8 @@
+import { Equal, In, MigrationInterface, getConnection } from 'typeorm'
+
 import { MenuItem } from '@entities/menu-item.entity'
 import { Restaurant } from '@entities/restaurant.entity'
 import { createInstance } from '@utils/class.utils'
-import { create } from 'domain'
-import {
-  Equal,
-  In,
-  MigrationInterface,
-  QueryRunner,
-  getConnection,
-} from 'typeorm'
 
 let TEST_MENU_ITEMS_DATA: Partial<MenuItem>[] = [
   {
@@ -37,7 +31,7 @@ let TEST_MENU_ITEMS_DATA_2: Partial<MenuItem>[] = [
   },
 ]
 
-export class menu1682857781855 implements MigrationInterface {
+export class menuItems1687025332509 implements MigrationInterface {
   private connection = getConnection('seed')
   private menuRepository = this.connection.getRepository(MenuItem)
   private restaurantRepository = this.connection.getRepository(Restaurant)
