@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
-import useLoginMutation from '../api/hooks/auth/mutations/useLoginMutation'
-import useValidation from '../hooks/useValidation'
-import { trimObjectStrings } from '../utils/string.utils'
-import { ERROR } from '../utils/error-message.constants'
+import useLoginMutation from '../../api/hooks/auth/mutations/useLoginMutation'
+import useValidation from '../../hooks/useValidation'
+import { trimObjectStrings } from '../../utils/string.utils'
+import { ERROR } from '../../utils/error-message.constants'
 
 const Login = () => {
   const [formState, setFormState] = useState({

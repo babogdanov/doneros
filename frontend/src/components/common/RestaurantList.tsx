@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
-import useRestaurants from '../api/hooks/restaurant/queries/useRestaurants'
+import useRestaurants from '../../api/hooks/restaurant/queries/useRestaurants'
 
-const RestaurantList = () => {
+type RestaurantListProps = {
+  linkPrefix: string
+}
+const RestaurantList = ({ linkPrefix }: RestaurantListProps) => {
   const { data, isLoading, isError } = useRestaurants()
 
   if (isLoading) {
@@ -13,8 +16,8 @@ const RestaurantList = () => {
   return (
     <ul>
       {data?.restaurants.map((restaurant, index) => (
-        <Link to={`/restaurants/${index + 1}`} key={index}>
-          <li key={index}> {restaurant.name} </li>
+        <Link key={index} to={`${linkPrefix}/${restaurant.id}`}>
+          <li> {restaurant.name} </li>
         </Link>
       ))}
     </ul>

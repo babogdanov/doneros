@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import background from '../../resources/welcomeTab1.png'
+import background from '../../../resources/welcomeTab1.png'
 
 const Home = () => {
   return (

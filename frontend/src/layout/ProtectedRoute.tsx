@@ -5,13 +5,25 @@ import { UserRole } from '../types/user'
 
 const allRoles = [UserRole.USER, UserRole.COURIER, UserRole.MANAGER, UserRole.ADMIN]
 
-const ProtectedRoute = ({ allowedRoles = allRoles }: { allowedRoles?: UserRole[] }) => {
+type ProtectedRouteProps = {
+  allowedRoles?: UserRole[]
+  notLoggedInAllowed?: 'true' | 'false' | 'only'
+}
+
+const ProtectedRoute = ({
+  allowedRoles = allRoles,
+  notLoggedInAllowed = 'false',
+}: ProtectedRouteProps) => {
   const user = useUser()
 
   const isLoggedIn = user?.accessToken
   const isAuthorized = allowedRoles.includes(user?.role)
 
-  if (!isLoggedIn) {
+  if (notLoggedInAllowed === 'only') {
+    return <Outlet />
+  }
+
+  if (!isLoggedIn && notLoggedInAllowed !== 'true') {
     return <Navigate to='login' />
   }
 

@@ -8,7 +8,8 @@ const useCreateMenuItem = () => {
   return useBaseMutation<CreateMenuItemRequest, MenuItemResponse>({
     apiParams: { path: '/menu-item', method: 'POST' },
     builtInParams: {
-      onSuccess: (data) => navigate(`/restaurants/${data.menuItem.restaurant.id}`),
+      onSuccess: (data) =>
+        navigate(`/manager/restaurants/${data.menuItem.restaurant.id}`),
     },
   })
 }

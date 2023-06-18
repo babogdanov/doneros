@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
-import useRegisterMutation from '../api/hooks/auth/mutations/useRegisterMutation'
-import useValidation from '../hooks/useValidation'
-import { trimObjectStrings } from '../utils/string.utils'
-import { ERROR } from '../utils/error-message.constants'
+import useRegisterMutation from '../../api/hooks/auth/mutations/useRegisterMutation'
+import useValidation from '../../hooks/useValidation'
+import { trimObjectStrings } from '../../utils/string.utils'
+import { ERROR } from '../../utils/error-message.constants'
 
 const Register = () => {
   const [formState, setFormState] = useState({
