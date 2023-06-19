@@ -1,7 +1,8 @@
-import { Entity, Column, OneToMany } from 'typeorm'
+import { Entity, Column, OneToMany, OneToOne, JoinColumn } from 'typeorm'
 import { BaseEntity } from './base.entity'
 // eslint-disable-next-line import/no-cycle
 import { MenuItem } from './menu-item.entity'
+import { User } from './user.entity'
 
 @Entity()
 export class Restaurant extends BaseEntity {
@@ -18,4 +19,8 @@ export class Restaurant extends BaseEntity {
     eager: true,
   })
   menuItems: MenuItem[]
+
+  @OneToOne(() => User, { eager: true })
+  @JoinColumn()
+  manager: User
 }

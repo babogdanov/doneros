@@ -3,14 +3,18 @@ import useLogout from '../../hooks/useLogout'
 import useUser from '../../hooks/useUser'
 import logo from '../../../resources/logo.png'
 
-const Navbar = () => {
-  const user = useUser()
+type NavbarProps = {
+  homePath: string
+  navbarLinks: { path: string; label: string }[]
+  isLoggedIn: boolean
+}
 
+const Navbar = ({ homePath, navbarLinks, isLoggedIn }: NavbarProps) => {
   const onLogout = useLogout()
 
   return (
     <div className='flex h-full bg-black'>
-      <Link to='/home' className='w-1/6'>
+      <Link to={homePath} className='w-1/6'>
         <div
           className='h-full'
           style={{
@@ -23,14 +27,16 @@ const Navbar = () => {
       </Link>
 
       <nav className='flex w-full items-center justify-between font-bold text-yellow-500'>
-        <div>
-          <Link to='/restaurants' className='mr-4 font-bold text-white'>
-            Restaurants
-          </Link>
-        </div>
+        {navbarLinks.map((link) => (
+          <div key={link.path}>
+            <Link to={link.path} className='mr-4 font-bold text-white'>
+              {link.label}
+            </Link>
+          </div>
+        ))}
 
         <div className='mr-20 flex items-center justify-between gap-10'>
-          {user?.accessToken ? (
+          {isLoggedIn ? (
             <>
               <Link to='/profile' className='mr-4 flex font-bold text-white '>
                 Profile

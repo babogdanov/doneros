@@ -4,7 +4,7 @@ import { Entity, Column, OneToOne, BeforeInsert, BeforeUpdate } from 'typeorm'
 import { BaseEntity } from './base.entity'
 import { ResetToken } from './reset-token.entity' // eslint-disable-line
 
-enum UserRole {
+export enum UserRole {
   USER = 'user',
   COURIER = 'courier',
   MANAGER = 'manager',
@@ -23,7 +23,7 @@ export class User extends BaseEntity {
   @Column()
   password: string
 
-  @Column()
+  @Column({ nullable: false, default: '' })
   phoneNumber: string
 
   @Column({

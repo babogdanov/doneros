@@ -7,7 +7,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { User } from '@entities/user.entity'
 import { ResetToken } from '@entities/reset-token.entity'
 import { AuthService } from './auth.service'
-import { JwtStrategy } from './auth.strategy'
+import { JwtStrategy } from '../../auth/strategies/jwt.strategy'
 import { AuthController } from './auth.controller'
 
 @Module({

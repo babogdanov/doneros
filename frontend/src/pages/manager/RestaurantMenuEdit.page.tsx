@@ -1,16 +1,18 @@
 import { useParams } from 'react-router-dom'
 
-import { MenuItemEditable } from '../types/menu-item'
-import useMenuItem from '../api/hooks/menu-item/useMenuItem'
-import useEditMenuItem from '../api/hooks/menu-item/useEditMenuItem'
-import LoadingSpinner from '../components/common/LoadingSpinner'
-import MenuItemForm from '../components/MenuItem/MenuItemForm'
+import { MenuItemEditable } from '../../types/menu-item'
+import useMenuItem from '../../api/hooks/menu-item/useMenuItem'
+import useEditMenuItem from '../../api/hooks/menu-item/useEditMenuItem'
+import LoadingSpinner from '../../components/common/LoadingSpinner'
+import MenuItemForm from '../../components/MenuItem/MenuItemForm'
+import useUser from '../../hooks/useUser'
 
 const RestaurantMenuEdit = () => {
   const { id } = useParams()
+  const { id: userId } = useUser()
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const menuItemId = id!
-  const { isLoading, isError, error, data } = useMenuItem(menuItemId)
+  const { isLoading, isError, data } = useMenuItem(menuItemId)
   const { mutate: edit } = useEditMenuItem(menuItemId)
 
   const handleSubmit = async (data: MenuItemEditable) => {
@@ -22,9 +24,12 @@ const RestaurantMenuEdit = () => {
   }
 
   if (isError) {
-    return <div>{JSON.stringify(error)}</div>
+    return <div>Unable to load initial data.</div>
   }
 
+  if (data.menuItem.restaurant.manager.id !== userId) {
+    return <div> You are not allowed to edit this restaurant. </div>
+  }
   return (
     <MenuItemForm
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
