@@ -8,6 +8,7 @@ let TEST_MENU_ITEMS_DATA: Partial<MenuItem>[] = [
   {
     name: 'Ушички в масло',
     description: 'Мазнички свински ушички приготвени в масло',
+    price: 11.99,
     pictureUrl:
       'http://doyoulovetoeat.com/wp-content/uploads/2019/12/DSC_0257.jpg',
   },
@@ -17,21 +18,24 @@ let TEST_MENU_ITEMS_DATA_2: Partial<MenuItem>[] = [
   {
     name: 'Дюнер - малък',
     description: 'Мазен дюнер',
+    price: 4.99,
     pictureUrl: 'https://www.aladinfoods.bg/files/images/294/light_duner.png',
   },
   {
     name: 'Дюнер - среден',
     description: 'Мазен дюнер',
+    price: 6.99,
     pictureUrl: 'https://www.aladinfoods.bg/files/images/294/light_duner.png',
   },
   {
     name: 'Дюнер - голям',
     description: 'Мазен дюнер',
+    price: 7.99,
     pictureUrl: 'https://www.aladinfoods.bg/files/images/294/light_duner.png',
   },
 ]
 
-export class menuItems1687025332509 implements MigrationInterface {
+export class menuItems1687025332510 implements MigrationInterface {
   private connection = getConnection('seed')
   private menuRepository = this.connection.getRepository(MenuItem)
   private restaurantRepository = this.connection.getRepository(Restaurant)
