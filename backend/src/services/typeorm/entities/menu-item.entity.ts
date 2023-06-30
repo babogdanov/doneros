@@ -14,6 +14,9 @@ export class MenuItem extends BaseEntity {
   @Column()
   pictureUrl: string
 
+  @Column({ type: 'numeric', precision: 10, scale: 2, default: 0 })
+  price: number
+
   @ManyToOne(() => Restaurant, (restaurant) => restaurant.menuItems)
   restaurant: Restaurant
 }
