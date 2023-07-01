@@ -1,17 +1,12 @@
 import * as bcrypt from 'bcrypt'
-import {
-  Entity,
-  Column,
-  OneToOne,
-  BeforeInsert,
-  BeforeUpdate,
-  OneToMany,
-} from 'typeorm'
+import { Entity, Column, OneToOne, BeforeInsert, BeforeUpdate, OneToMany } from 'typeorm'
 
 import { BaseEntity } from './base.entity'
 import { ResetToken } from './reset-token.entity' // eslint-disable-line
 // eslint-disable-next-line import/no-cycle
 import { Order } from './order.entity'
+// eslint-disable-next-line import/no-cycle
+import { Address } from './address.entity'
 
 export enum UserRole {
   USER = 'user',
@@ -47,6 +42,11 @@ export class User extends BaseEntity {
 
   @OneToOne(() => ResetToken)
   resetToken: ResetToken
+
+  @OneToMany(() => Address, (address) => address.user, {
+    eager: true,
+  })
+  addresses: Address[]
 
   @BeforeInsert()
   @BeforeUpdate()
