@@ -41,7 +41,7 @@ const AppRoutes = () => {
           <Route path='/restaurants/:id' element={<Restaurant />} />
         </Route>
 
-        <Route element={<ProtectedRoute />}> 
+        <Route element={<ProtectedRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/cart' element={<Cart />} />
         </Route>
@@ -61,7 +61,7 @@ const AppRoutes = () => {
             element={<RestaurantMenuCreate />}
           />
         </Route>
-        
+
         {/* Tva move bi e ostaveno za adminskiq dashbord? */}
         <Route
           element={
