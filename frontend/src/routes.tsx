@@ -21,6 +21,7 @@ import CourierHome from './pages/courier/CourierHome.page'
 // Admin pages
 import AdminHome from './pages/admin/AdminHome.page'
 import Orders from './pages/common/Orders.page'
+import Cart from './pages/common/Cart.page'
 
 const AppRoutes = () => {
   return (
@@ -40,8 +41,9 @@ const AppRoutes = () => {
           <Route path='/restaurants/:id' element={<Restaurant />} />
         </Route>
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute />}> 
           <Route path='/profile' element={<Profile />} />
+          <Route path='/cart' element={<Cart />} />
         </Route>
         <Route
           element={<ProtectedRoute allowedRoles={[UserRole.COURIER, UserRole.ADMIN]} />}
@@ -59,6 +61,8 @@ const AppRoutes = () => {
             element={<RestaurantMenuCreate />}
           />
         </Route>
+        
+        {/* Tva move bi e ostaveno za adminskiq dashbord? */}
         <Route
           element={
             <ProtectedRoute

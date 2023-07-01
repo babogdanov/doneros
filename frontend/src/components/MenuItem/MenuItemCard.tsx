@@ -24,7 +24,7 @@ const MenuItemCard = ({ menuItem, isManagerView = false }: MenuItemProps) => {
   }
 
   return (
-    <div className='m-5 mb-16 h-96 w-96 rounded-lg bg-white text-center font-sans shadow-lg'>
+    <div className='m-5 mb-16 h-5/6 w-96 rounded-lg bg-white text-center font-sans shadow-lg'>
       <div className='h-1/6 w-full text-2xl'>{name}</div>
       <img className='h-full object-scale-down' src={pictureUrl} alt='' />
       <div className='h-10 w-full text-xl text-blue-500'>{price}</div>

@@ -16,7 +16,8 @@ const RestaurantMenuEdit = () => {
   const { isLoading, isError, data } = useMenuItem(menuItemId)
   const { mutate: edit } = useEditMenuItem(menuItemId)
 
-  const handleSubmit = async (data: MenuItemEditable) => {    //TODO: след едит на връша на холм пейдж
+  const handleSubmit = async (data: MenuItemEditable) => {
+    //TODO: след едит на връша на холм пейдж
     navigate(`/manager/restaurants/${id}`)
     edit(data)
   }

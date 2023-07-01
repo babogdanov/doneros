@@ -9,7 +9,7 @@ const initialState: MenuItemEditable = {
   name: '',
   description: '',
   pictureUrl: '',
-  price: 0
+  price: 0,
 }
 
 type MenuItemFormProps = {
@@ -109,10 +109,7 @@ const MenuItemForm = ({
           ></textarea>
         </div>
         <div>
-          <label
-            className='mb-2 block text-sm font-bold text-gray-700'
-            htmlFor='price'
-          >
+          <label className='mb-2 block text-sm font-bold text-gray-700' htmlFor='price'>
             Price
           </label>
           <input

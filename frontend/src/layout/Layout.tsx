@@ -3,6 +3,8 @@ import Navbar from '../components/common/Navbar'
 import useUser from '../hooks/useUser'
 import { UserRole } from '../types/user'
 
+//TODO: tva maj ne e bash izmisleno shtoto hem si vzima konfiguraciite ot tuka za kakvo da ima v navbara hem imame i navbar.tsx kudeto sa opisani drugi raboti
+//TODO: moje i na men neshto ne mi e qsno suvsem
 const getNavbarLinksForRole = (userRole: UserRole) => {
   switch (userRole) {
     case UserRole.USER:
