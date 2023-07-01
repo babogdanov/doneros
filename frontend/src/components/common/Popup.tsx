@@ -1,6 +1,9 @@
 import { MouseEventHandler, ReactChild, ReactFragment, ReactPortal } from 'react'
 
-const Popup = (props: { handleClose: MouseEventHandler<HTMLSpanElement> | undefined; content: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined }) => (
+const Popup = (props: {
+  handleClose: MouseEventHandler<HTMLSpanElement> | undefined
+  content: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined
+}) => (
   <div className='fixed inset-0 bg-black/50'>
     <div className='relative mx-auto mt-[calc(100vh-85vh-20px)] h-auto max-h-[70vh] w-5/6 overflow-auto rounded-md border border-gray-400 bg-white p-20'>
       <span
