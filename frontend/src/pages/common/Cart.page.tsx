@@ -8,8 +8,7 @@ import Popup from '../../components/common/Popup'
 
 const Cart = () => {
   const navigate = useNavigate()
-  const user = useUser()
-  const { role } = user
+  const { role } = useUser()
 
   const cart = useCartStore((state) => state.cart)
 
@@ -39,7 +38,7 @@ const Cart = () => {
       )}
       {isOpen && (
         <Popup
-          content={
+        context={
             <>
               <h4>Завърши поръката</h4>
               <div>
