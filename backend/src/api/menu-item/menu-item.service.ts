@@ -49,7 +49,7 @@ export class MenuItemService {
   }
 
   async remove(id: number) {
-    const res = this.menuItemRepository.delete(id)
+    const res = await this.menuItemRepository.delete(id)
     return res
   }
 }
