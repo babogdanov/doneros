@@ -78,7 +78,3 @@ const Cart = () => {
 }
 
 export default Cart
-function useId() {
-  throw new Error('Function not implemented.')
-}
-

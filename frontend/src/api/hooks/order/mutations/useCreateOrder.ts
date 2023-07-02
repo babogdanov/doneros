@@ -9,8 +9,7 @@ const useCreateOrder = () => {
     apiParams: { path: '/order', method: 'POST' },
     builtInParams: {
       onSuccess: () => {
-        navigate('/profile'),
-        toast.success('You have successfully placed an order')
+        navigate('/profile'), toast.success('You have successfully placed an order')
       },
       onError: (error) => {
         navigate('/cart'), toast.error(error.message)
