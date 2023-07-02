@@ -38,7 +38,7 @@ const Cart = () => {
       )}
       {isOpen && (
         <Popup
-        context={
+          context={
             <>
               <h4>Завърши поръката</h4>
               <div>
