@@ -8,6 +8,7 @@ import { RestaurantModule } from '@api/restaurant/restaurant.module'
 import { MenuItemModule } from '@api/menu-item/menu-item.module'
 import { OrderModule } from '@api/order/order.module'
 import { AuthModule } from './api/auth/auth.module'
+import { AddressModule } from './api/address/address.module'
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { AuthModule } from './api/auth/auth.module'
     RestaurantModule,
     MenuItemModule,
     OrderModule,
+    AddressModule,
   ],
   controllers: [],
   providers: [],

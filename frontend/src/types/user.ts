@@ -1,3 +1,5 @@
+import { Address } from './address'
+
 /* General-use types */
 
 export enum UserRole {
@@ -5,14 +7,6 @@ export enum UserRole {
   COURIER = 'courier',
   MANAGER = 'manager',
   ADMIN = 'admin',
-}
-
-export type Address = {
-  id: number
-  city: string
-  street: string
-  number: number
-  postalCode: number
 }
 
 export type User = {

@@ -17,6 +17,7 @@ const useSyncQuery = () =>
       retry: false,
       staleTime: Infinity,
       refetchInterval: AUTH_POLLING_TIME,
+      queryKey: AUTH_QUERY_KEY,
       onError: () => clearUser(),
     },
   })
