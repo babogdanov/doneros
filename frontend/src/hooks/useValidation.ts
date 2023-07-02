@@ -1,3 +1,4 @@
+// TODO: от Дидо - тва не знам как да го наместя и за числа
 interface ValidationInput {
   input: string | string[]
   validationFunc: (input: string | string[]) => boolean

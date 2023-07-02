@@ -5,6 +5,7 @@ export type MenuItem = {
   name: string
   description: string
   pictureUrl: string
+  price: number
   restaurant: Restaurant
 }
 
@@ -14,6 +15,7 @@ export type MenuItemRequest = {
   name: string
   description: string
   pictureUrl: string
+  price: number
 }
 
 export type MenuItemResponse = {
@@ -24,5 +26,6 @@ export type CreateMenuItemRequest = {
   name: string
   description: string
   pictureUrl: string
+  price: number
   restaurantId: string
 }

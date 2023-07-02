@@ -12,7 +12,7 @@ type MenuItemProps = {
 
 const MenuItemCard = ({ menuItem, isManagerView = false }: MenuItemProps) => {
   const navigate = useNavigate()
-  const { id, name, description, pictureUrl } = menuItem
+  const { id, name, description, pictureUrl, price } = menuItem
   const { mutate: deleteMenuItem } = useDeleteMenuItem(`${id}`)
 
   const addToCart = useCartStore((state) => state.add)
@@ -24,9 +24,10 @@ const MenuItemCard = ({ menuItem, isManagerView = false }: MenuItemProps) => {
   }
 
   return (
-    <div className='m-5 mb-16 h-96 w-96 rounded-lg bg-white text-center font-sans shadow-lg'>
+    <div className='m-5 mb-16 h-5/6 w-96 rounded-lg bg-white text-center font-sans shadow-lg'>
       <div className='h-1/6 w-full text-2xl'>{name}</div>
       <img className='h-full object-scale-down' src={pictureUrl} alt='' />
+      <div className='h-10 w-full text-xl text-blue-500'>{price}</div>
       <div className='h-1/6 w-full text-xl'>{description}</div>
       {!isManagerView && (
         <>
@@ -52,7 +53,7 @@ const MenuItemCard = ({ menuItem, isManagerView = false }: MenuItemProps) => {
         <>
           <button
             className='w-1/2 bg-orange-400 text-white hover:bg-orange-600 hover:text-white'
-            onClick={() => navigate(`/edit-menu-item/${id}`)}
+            onClick={() => navigate(`/manager/edit-menu-item/${id}`)}
           >
             Edit
           </button>

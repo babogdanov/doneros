@@ -18,16 +18,6 @@ const Profile = () => {
       <p>{phoneNumber} </p>
       <label>Role</label>
       <p>{role} </p>
-      {role === UserRole.USER && (
-        <>
-          <h3> Your cart: </h3>
-          <div className='flex'>
-            {cart.map((menuItem) => (
-              <MenuItemCard key={menuItem.id} menuItem={menuItem} />
-            ))}
-          </div>
-        </>
-      )}
     </div>
   )
 }
