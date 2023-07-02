@@ -6,6 +6,7 @@ import * as Joi from 'joi'
 
 import { RestaurantModule } from '@api/restaurant/restaurant.module'
 import { MenuItemModule } from '@api/menu-item/menu-item.module'
+import { OrderModule } from '@api/order/order.module'
 import { AuthModule } from './api/auth/auth.module'
 
 @Module({
@@ -42,6 +43,7 @@ import { AuthModule } from './api/auth/auth.module'
     AuthModule,
     RestaurantModule,
     MenuItemModule,
+    OrderModule,
   ],
   controllers: [],
   providers: [],

@@ -8,5 +8,5 @@ export class CreateOrderDto {
     price: number
 
     @IsNotEmpty()
-    userId: string
+    userId: number
 }

@@ -3,19 +3,29 @@ import MenuItemCard from '../../components/MenuItem/MenuItemCard'
 import useUser from '../../hooks/useUser'
 import useCartStore from '../../hooks/zustand/useCartStore'
 import { UserRole } from '../../types/user'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Popup from '../../components/common/Popup'
+import { OrderRequest } from '../../types/order'
+import useCreateOrder from '../../api/hooks/order/mutations/useCreateOrder'
 
 const Cart = () => {
-  const navigate = useNavigate()
-  const { role } = useUser()
-
+  const { role, id } = useUser()
   const cart = useCartStore((state) => state.cart)
-
   const [isOpen, setIsOpen] = useState(false)
+  const { mutate: create } = useCreateOrder()
+  const [price, setPrice] = useState(0)
 
+  
+  useEffect(() => {
+    setPrice(cart.reduce((sum, item) => +sum + +item.price, 0));
+  }, []);
+  
   const togglePopup = () => {
     setIsOpen(!isOpen)
+  }
+
+  const handleSubmit = async (data: OrderRequest) => {
+    create({ ...data, userId: id })
   }
 
   return (
@@ -29,7 +39,7 @@ const Cart = () => {
             ))}
           </div>
           <div className='flex flex-col'>
-            <h3> Total price: {cart.reduce((sum, item) => +sum + +item.price, 0)}</h3>
+            <h3> Total price: {price}</h3>
           </div>
           <button className='h-20 w-56' onClick={togglePopup}>
             Order now
@@ -43,19 +53,19 @@ const Cart = () => {
               <h4>Завърши поръката</h4>
               <div>
                 {cart.map((menuItem) => (
-                  <div className='flex' key={menuItem.id}>
+                  <div className='flex' key={menuItem.id + 10}>
                     <div className='w-1/3'>{menuItem.name}</div>
                     <div className='w-2/3'>{menuItem.price}</div>
                   </div>
                 ))}
               </div>
-              <h5>Крайна цена: {cart.reduce((sum, item) => +sum + +item.price, 0)}</h5>
+              <h5>Крайна цена: {price}</h5>
               <div className='flex'>
                 <div className='w-1/3'>Избери адрес за доставка</div>
                 <div className='w-1/3'>Избери начин на плащане</div>
                 <div className='w-1/3'>Очакван час на доставка:</div>
               </div>
-              <button>Завърши поръчка</button>
+              <button onClick={() => handleSubmit({ paymentMethod: 'card', price: price })} >Завърши поръчка</button>
             </>
           }
           handleClose={togglePopup}

@@ -41,15 +41,20 @@ const AppRoutes = () => {
           <Route path='/restaurants/:id' element={<Restaurant />} />
         </Route>
 
-        <Route element={<ProtectedRoute />}>
-          <Route path='/profile' element={<Profile />} />
+        <Route element={<ProtectedRoute allowedRoles={[UserRole.USER]} />}>
           <Route path='/cart' element={<Cart />} />
         </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route path='/profile' element={<Profile />} />
+        </Route>
+
         <Route
           element={<ProtectedRoute allowedRoles={[UserRole.COURIER, UserRole.ADMIN]} />}
         >
           <Route path='/home/courier' element={<CourierHome />} />
         </Route>
+
         <Route
           element={<ProtectedRoute allowedRoles={[UserRole.MANAGER, UserRole.ADMIN]} />}
         >
@@ -62,7 +67,6 @@ const AppRoutes = () => {
           />
         </Route>
 
-        {/* Tva move bi e ostaveno za adminskiq dashbord? */}
         <Route
           element={
             <ProtectedRoute
@@ -72,9 +76,11 @@ const AppRoutes = () => {
         >
           <Route path='/orders' element={<Orders />} />
         </Route>
+
         <Route element={<ProtectedRoute allowedRoles={[UserRole.ADMIN]} />}>
           <Route path='/home/admin' element={<AdminHome />} />
         </Route>
+        
         <Route path='*' element={<Navigate to='/' replace />} />
       </Route>
     </Routes>

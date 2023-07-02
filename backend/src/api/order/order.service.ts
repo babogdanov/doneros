@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+
 import { createInstance } from '@utils/class.utils'
 import { User } from '@entities/user.entity'
 import { Repository } from 'typeorm'
@@ -15,7 +17,7 @@ export class OrderService {
 
   async create(createOrderDto: CreateOrderDto) {
     const { userId, ...orderDto } = createOrderDto
-    const userDto = createInstance(User, { id: +userId })
+    const userDto = createInstance(User, { id: userId })
     const { id } = await this.orderRepository
       .create({ ...orderDto, user: userDto })
       .save()
