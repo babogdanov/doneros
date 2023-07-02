@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import MenuItemCard from '../../components/MenuItem/MenuItemCard'
 import useUser from '../../hooks/useUser'
 import useCartStore from '../../hooks/zustand/useCartStore'
@@ -17,7 +16,7 @@ const Cart = () => {
 
   useEffect(() => {
     setPrice(cart.reduce((sum, item) => +sum + +item.price, 0))
-  }, [])
+  }, [cart])
 
   const togglePopup = () => {
     setIsOpen(!isOpen)
@@ -33,8 +32,8 @@ const Cart = () => {
         <>
           <h3> Your cart: </h3>
           <div className='flex'>
-            {cart.map((menuItem) => (
-              <MenuItemCard key={menuItem.id} menuItem={menuItem} />
+            {cart.map((menuItem, index) => (
+              <MenuItemCard key={index} menuItem={menuItem} />
             ))}
           </div>
           <div className='flex flex-col'>
@@ -51,8 +50,8 @@ const Cart = () => {
             <>
               <h4>Завърши поръката</h4>
               <div>
-                {cart.map((menuItem) => (
-                  <div className='flex' key={menuItem.id + 10}>
+                {cart.map((menuItem, index) => (
+                  <div className='flex' key={index}>
                     <div className='w-1/3'>{menuItem.name}</div>
                     <div className='w-2/3'>{menuItem.price}</div>
                   </div>
@@ -79,3 +78,7 @@ const Cart = () => {
 }
 
 export default Cart
+function useId() {
+  throw new Error('Function not implemented.')
+}
+
