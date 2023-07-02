@@ -1,4 +1,5 @@
 import MenuItemCard from '../../components/MenuItem/MenuItemCard'
+import AddressEntry from '../../components/Address/AddressEntry'
 import useUser from '../../hooks/useUser'
 import useCartStore from '../../hooks/zustand/useCartStore'
 import { UserRole } from '../../types/user'
@@ -6,7 +7,7 @@ import { UserRole } from '../../types/user'
 const Profile = () => {
   const user = useUser()
 
-  const { email, phoneNumber, role } = user
+  const { email, phoneNumber, role, addresses } = user
   const cart = useCartStore((state) => state.cart)
 
   return (
@@ -18,6 +19,16 @@ const Profile = () => {
       <p>{phoneNumber} </p>
       <label>Role</label>
       <p>{role} </p>
+      {role === UserRole.USER && (
+        <>
+          <h5 className=' mb-0'>Your addresses:</h5>
+          <div>
+            {addresses.map((address) => (
+              <AddressEntry key={address.id} address={address} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }
