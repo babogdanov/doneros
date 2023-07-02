@@ -15,11 +15,10 @@ const Cart = () => {
   const { mutate: create } = useCreateOrder()
   const [price, setPrice] = useState(0)
 
-  
   useEffect(() => {
-    setPrice(cart.reduce((sum, item) => +sum + +item.price, 0));
-  }, []);
-  
+    setPrice(cart.reduce((sum, item) => +sum + +item.price, 0))
+  }, [])
+
   const togglePopup = () => {
     setIsOpen(!isOpen)
   }
@@ -65,7 +64,11 @@ const Cart = () => {
                 <div className='w-1/3'>Избери начин на плащане</div>
                 <div className='w-1/3'>Очакван час на доставка:</div>
               </div>
-              <button onClick={() => handleSubmit({ paymentMethod: 'card', price: price })} >Завърши поръчка</button>
+              <button
+                onClick={() => handleSubmit({ paymentMethod: 'card', price: price })}
+              >
+                Завърши поръчка
+              </button>
             </>
           }
           handleClose={togglePopup}

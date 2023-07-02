@@ -1,5 +1,12 @@
 import * as bcrypt from 'bcrypt'
-import { Entity, Column, OneToOne, BeforeInsert, BeforeUpdate, OneToMany } from 'typeorm'
+import {
+  Entity,
+  Column,
+  OneToOne,
+  BeforeInsert,
+  BeforeUpdate,
+  OneToMany,
+} from 'typeorm'
 
 import { BaseEntity } from './base.entity'
 import { ResetToken } from './reset-token.entity' // eslint-disable-line

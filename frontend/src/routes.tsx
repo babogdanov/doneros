@@ -80,7 +80,7 @@ const AppRoutes = () => {
         <Route element={<ProtectedRoute allowedRoles={[UserRole.ADMIN]} />}>
           <Route path='/home/admin' element={<AdminHome />} />
         </Route>
-        
+
         <Route path='*' element={<Navigate to='/' replace />} />
       </Route>
     </Routes>
