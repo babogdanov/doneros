@@ -9,4 +9,7 @@ export class UpdateMenuItemDto {
 
   @IsNotEmpty()
   pictureUrl: string
+
+  @IsNotEmpty()
+  price: number
 }

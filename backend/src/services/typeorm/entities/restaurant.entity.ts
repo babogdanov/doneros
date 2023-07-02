@@ -1,6 +1,6 @@
+/* eslint-disable import/no-cycle */
 import { Entity, Column, OneToMany, OneToOne, JoinColumn } from 'typeorm'
 import { BaseEntity } from './base.entity'
-// eslint-disable-next-line import/no-cycle
 import { MenuItem } from './menu-item.entity'
 import { User } from './user.entity'
 

@@ -21,6 +21,7 @@ import CourierHome from './pages/courier/CourierHome.page'
 // Admin pages
 import AdminHome from './pages/admin/AdminHome.page'
 import Orders from './pages/common/Orders.page'
+import Cart from './pages/common/Cart.page'
 
 const AppRoutes = () => {
   return (
@@ -40,14 +41,20 @@ const AppRoutes = () => {
           <Route path='/restaurants/:id' element={<Restaurant />} />
         </Route>
 
+        <Route element={<ProtectedRoute allowedRoles={[UserRole.USER]} />}>
+          <Route path='/cart' element={<Cart />} />
+        </Route>
+
         <Route element={<ProtectedRoute />}>
           <Route path='/profile' element={<Profile />} />
         </Route>
+
         <Route
           element={<ProtectedRoute allowedRoles={[UserRole.COURIER, UserRole.ADMIN]} />}
         >
           <Route path='/home/courier' element={<CourierHome />} />
         </Route>
+
         <Route
           element={<ProtectedRoute allowedRoles={[UserRole.MANAGER, UserRole.ADMIN]} />}
         >
@@ -59,6 +66,7 @@ const AppRoutes = () => {
             element={<RestaurantMenuCreate />}
           />
         </Route>
+
         <Route
           element={
             <ProtectedRoute
@@ -68,9 +76,11 @@ const AppRoutes = () => {
         >
           <Route path='/orders' element={<Orders />} />
         </Route>
+
         <Route element={<ProtectedRoute allowedRoles={[UserRole.ADMIN]} />}>
           <Route path='/home/admin' element={<AdminHome />} />
         </Route>
+
         <Route path='*' element={<Navigate to='/' replace />} />
       </Route>
     </Routes>

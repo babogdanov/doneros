@@ -9,6 +9,7 @@ const initialState: MenuItemEditable = {
   name: '',
   description: '',
   pictureUrl: '',
+  price: 0,
 }
 
 type MenuItemFormProps = {
@@ -23,7 +24,7 @@ const MenuItemForm = ({
   submitLabel,
 }: MenuItemFormProps) => {
   const [formData, setFormData] = useState(initialData)
-  const { name, description, pictureUrl } = formData
+  const { name, description, pictureUrl, price } = formData
 
   const [isValid, errorMessage] = useValidation([
     {
@@ -41,6 +42,12 @@ const MenuItemForm = ({
       validationFunc: (input) => isValidUrl(input as string),
       errorMessage: ERROR.generic.pictureUrlRequried,
     },
+    //TODO: коментара е в useValidation
+    // {
+    //   input: formData.price,
+    //   validationFunc: (input) => isValidUrl(input as number),
+    //   errorMessage: ERROR.generic.priceRequried,
+    // },
   ])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -100,6 +107,18 @@ const MenuItemForm = ({
             value={description}
             onChange={handleChange}
           ></textarea>
+        </div>
+        <div>
+          <label className='mb-2 block text-sm font-bold text-gray-700' htmlFor='price'>
+            Price
+          </label>
+          <input
+            className='w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
+            id='price'
+            name='price'
+            value={price}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label

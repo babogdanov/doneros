@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { MenuItemEditable } from '../../types/menu-item'
 import useMenuItem from '../../api/hooks/menu-item/useMenuItem'
@@ -10,12 +10,15 @@ import useUser from '../../hooks/useUser'
 const RestaurantMenuEdit = () => {
   const { id } = useParams()
   const { id: userId } = useUser()
+  const navigate = useNavigate()
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const menuItemId = id!
   const { isLoading, isError, data } = useMenuItem(menuItemId)
   const { mutate: edit } = useEditMenuItem(menuItemId)
 
   const handleSubmit = async (data: MenuItemEditable) => {
+    //TODO: след едит на връша на холм пейдж
+    navigate(`/manager/restaurants/${id}`)
     edit(data)
   }
 
