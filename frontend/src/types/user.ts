@@ -7,12 +7,21 @@ export enum UserRole {
   ADMIN = 'admin',
 }
 
+export type Address = {
+  id: number
+  city: string
+  street: string
+  number: number
+  postalCode: number
+}
+
 export type User = {
   id: number
   email: string
   accessToken: string | null
   phoneNumber: string
   role: UserRole
+  addresses: Address[]
 }
 
 /* API types */

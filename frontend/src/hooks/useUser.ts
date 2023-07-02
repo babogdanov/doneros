@@ -10,7 +10,9 @@ const initialState: User = {
   phoneNumber: '',
   role: UserRole.USER,
   accessToken: null,
+  addresses: [],
 }
+
 const useUser = () => {
   const { data: user } = useSyncQuery()
 
