@@ -14,7 +14,7 @@ export type OrderResponse = {
 
 export type CreateOrderRequest = {
   paymentMethod: string
-  address: string
+  addressId: number
   price: number
   userId: number
 }

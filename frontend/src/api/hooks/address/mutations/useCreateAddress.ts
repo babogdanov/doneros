@@ -10,8 +10,8 @@ const useCreateAddress = () => {
     builtInParams: {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: AUTH_QUERY_KEY })
-      }
-    }
+      },
+    },
   })
 }
 
