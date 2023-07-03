@@ -16,6 +16,7 @@ import { ResetToken } from './reset-token.entity' // eslint-disable-line
 import { Order } from './order.entity'
 import { UserCoupons } from './user-coupons.entity'
 import { Level } from './level.entity'
+import { Address } from './address.entity'
 
 export enum UserRole {
   USER = 'user',
@@ -59,6 +60,11 @@ export class User extends BaseEntity {
   @Column({ default: 0 })
   points: number
 
+  @OneToMany(() => Address, (address) => address.user, {
+    eager: true,
+  })
+  addresses: Address[]
+  
   @OneToOne(() => ResetToken)
   resetToken: ResetToken
 
@@ -70,4 +76,5 @@ export class User extends BaseEntity {
     const hashedPassword = bcrypt.hashSync(this.password, salt)
     this.password = hashedPassword
   }
+
 }
