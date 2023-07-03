@@ -31,7 +31,7 @@ export class AddressService {
       { id },
       { relations: ['user'] },
     )
-    
+
     return res
   }
 

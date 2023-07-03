@@ -6,6 +6,11 @@ import { useEffect, useState } from 'react'
 import Popup from '../../components/common/Popup'
 import { CreateOrderRequest } from '../../types/order'
 import useCreateOrder from '../../api/hooks/order/mutations/useCreateOrder'
+import { Address } from '../../types/address'
+
+const getFormattedAddress = (address: Address) => {
+  return `${address.city}, ${address.street}, ${address.number}, ${address.postalCode}`
+}
 
 const Cart = () => {
   const user = useUser()
@@ -22,9 +27,12 @@ const Cart = () => {
     setIsOpen(!isOpen)
   }
 
+  console.log(user.addresses)
+
+  const defaultAddress = user.addresses[0]
   const [formState, setFormState] = useState({
     paymentMethod: 'card',
-    address: 'София, ул. Любен Каравелов, № 1, 1000',
+    addressId: defaultAddress.id,
     price: '',
   })
 
@@ -71,17 +79,13 @@ const Cart = () => {
                     onChange={(event) =>
                       setFormState((prevState) => ({
                         ...prevState,
-                        address: event.target.value,
+                        addressId: +event.target.value,
                       }))
                     }
                   >
                     {user.addresses.map((address, index) => (
-                      <option
-                        key={index}
-                        value={`${address.city}, ${address.street}, ${address.number}, ${address.postalCode}`}
-                      >
-                        {address.city}, {address.street}, {address.number},
-                        {address.postalCode}
+                      <option key={index} value={address.id}>
+                        {getFormattedAddress(address)}
                       </option>
                     ))}
                   </select>
@@ -110,7 +114,7 @@ const Cart = () => {
                 onClick={() =>
                   handleSubmit({
                     paymentMethod: formState.paymentMethod,
-                    address: formState.address,
+                    addressId: formState.addressId,
                     price: +price,
                     userId: user.id,
                   })

@@ -11,15 +11,16 @@ const AddressEntry = ({ address }: AddressProps) => {
 
   return (
     <div className=' mb-2 flex'>
-      <div className='h-1/6 w-full text-2xl'>{city}, {street}, &#8470; {number}, {postalCode}</div>
+      <div className='h-1/6 w-full text-2xl'>
+        {city}, {street}, &#8470; {number}, {postalCode}
+      </div>
 
       <>
         <button
           className=' ml-4 bg-red-500 text-white hover:bg-red-600 hover:text-white'
           onClick={() => {
             deleteAddress()
-          }
-        }
+          }}
         >
           ✘
         </button>
