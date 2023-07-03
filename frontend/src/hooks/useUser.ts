@@ -23,7 +23,9 @@ const initialState: User = {
     thirtyPercentOff: 0,
     fiftyPercentOff: 0,
   },
+  addresses: [],
 }
+
 const useUser = () => {
   const { data: user } = useSyncQuery()
 

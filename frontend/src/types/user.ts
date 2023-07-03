@@ -1,3 +1,5 @@
+import { Address } from './address'
+
 /* General-use types */
 
 import { Level } from './level'
@@ -19,6 +21,7 @@ export type User = {
   points: number
   level: Level
   coupons: UserCoupons
+  addresses: Address[]
 }
 
 /* API types */

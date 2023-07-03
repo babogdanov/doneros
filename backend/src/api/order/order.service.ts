@@ -5,6 +5,7 @@ import { createInstance } from '@utils/class.utils'
 import { User } from '@entities/user.entity'
 import { Repository } from 'typeorm'
 import { Order } from '@entities/order.entity'
+import { Address } from '@entities/address.entity'
 import { CreateOrderDto } from './dto/create-order.dto'
 
 @Injectable()
@@ -16,13 +17,13 @@ export class OrderService {
   ) {}
 
   async create(createOrderDto: CreateOrderDto) {
-    const { userId, ...orderDto } = createOrderDto
-    const userDto = createInstance(User, { id: userId })
-    const { id } = await this.orderRepository
-      .create({ ...orderDto, user: userDto })
+    const { userId, addressId, ...orderDto } = createOrderDto
+    const user = createInstance(User, { id: userId })
+    const address = createInstance(Address, { id: +addressId })
+    const order = await this.orderRepository
+      .create({ ...orderDto, user, address })
       .save()
 
-    const order = await this.orderRepository.findOneOrFail(id)
     return { order }
   }
 

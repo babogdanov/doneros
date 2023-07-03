@@ -56,7 +56,7 @@ export class User extends BaseEntity {
   @ManyToOne(() => Level, (level) => level.id, { eager: true })
   level: Level
 
-  @Column({ default: 0 })
+  @Column({ default: 0})
   points: number
 
   @OneToOne(() => ResetToken)
