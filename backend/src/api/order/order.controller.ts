@@ -2,18 +2,23 @@ import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common'
 import { JwtAuthGuard } from '@guards/jwt.guard'
 import { UserRole } from '@entities/user.entity'
 import { RolesGuard } from '@guards/role.guard'
+import { CouponsService } from '@api/coupons/coupons.service'
 import { OrderService } from './order.service'
 import { CreateOrderDto } from './dto/create-order.dto'
 
 @UseGuards(JwtAuthGuard)
 @Controller('order')
 export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(private readonly orderService: OrderService, private readonly couponService: CouponsService) {}
 
   @UseGuards(new RolesGuard([UserRole.USER, UserRole.ADMIN]))
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
+    console.log(createOrderDto.price)
+    const price = await this.couponService.updatePoints( createOrderDto.userId, createOrderDto.price )
+    console.log(price)
     const order = await this.orderService.create(createOrderDto)
+    console.log(order)
     return { order }
   }
 

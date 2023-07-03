@@ -1,5 +1,8 @@
 /* General-use types */
 
+import { Level } from './level'
+import { UserCoupons } from './user-coupons'
+
 export enum UserRole {
   USER = 'user',
   COURIER = 'courier',
@@ -13,6 +16,9 @@ export type User = {
   accessToken: string | null
   phoneNumber: string
   role: UserRole
+  points: number
+  level: Level
+  coupons: UserCoupons
 }
 
 /* API types */

@@ -1,5 +1,6 @@
 import { Entity, Column, OneToOne } from 'typeorm'
 import { BaseEntity } from './base.entity'
+// eslint-disable-next-line import/no-cycle
 import { User } from './user.entity'
 
 @Entity()

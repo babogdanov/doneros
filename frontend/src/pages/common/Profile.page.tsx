@@ -8,7 +8,6 @@ const Profile = () => {
 
   const { email, phoneNumber, role } = user
   const cart = useCartStore((state) => state.cart)
-
   return (
     <div className='flex flex-col items-center justify-center'>
       <h3>Your data</h3>
@@ -18,6 +17,8 @@ const Profile = () => {
       <p>{phoneNumber} </p>
       <label>Role</label>
       <p>{role} </p>
+      <label>Your level: </label>
+      <p>{user.level.name} - points {user.points} </p>
     </div>
   )
 }

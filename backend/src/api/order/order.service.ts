@@ -22,7 +22,7 @@ export class OrderService {
       .create({ ...orderDto, user: userDto })
       .save()
 
-    const order = await this.findOne(id)
+    const order = await this.orderRepository.findOneOrFail(id)
     return { order }
   }
 

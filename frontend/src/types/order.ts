@@ -7,11 +7,6 @@ export type Order = {
   user: User
 }
 
-export type OrderRequest = {
-  paymentMethod: string
-  price: number
-}
-
 export type OrderResponse = {
   order: Order
 }
