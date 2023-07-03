@@ -1,5 +1,5 @@
-import { Controller, Get, Param, Delete } from '@nestjs/common';
-import { CouponsService } from './coupons.service';
+import { Controller, Get, Param, Delete } from '@nestjs/common'
+import { CouponsService } from './coupons.service'
 // import { CreateCouponDto } from './dto/create-coupon.dto';
 // import { UpdateCouponDto } from './dto/update-coupon.dto';
 
@@ -14,12 +14,12 @@ export class CouponsController {
 
   @Get()
   findAll() {
-    return this.couponsService.findAll();
+    return this.couponsService.findAll()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.couponsService.findOne(+id);
+    return this.couponsService.findOne(+id)
   }
 
   // @Patch(':id')
@@ -29,6 +29,6 @@ export class CouponsController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.couponsService.remove(+id);
+    return this.couponsService.remove(+id)
   }
 }

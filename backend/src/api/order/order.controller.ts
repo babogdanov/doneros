@@ -9,16 +9,19 @@ import { CreateOrderDto } from './dto/create-order.dto'
 @UseGuards(JwtAuthGuard)
 @Controller('order')
 export class OrderController {
-  constructor(private readonly orderService: OrderService, private readonly couponService: CouponsService) {}
+  constructor(
+    private readonly orderService: OrderService,
+    private readonly couponService: CouponsService,
+  ) {}
 
   @UseGuards(new RolesGuard([UserRole.USER, UserRole.ADMIN]))
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
-    console.log(createOrderDto.price)
-    const price = await this.couponService.updatePoints( createOrderDto.userId, createOrderDto.price )
-    console.log(price)
+    await this.couponService.updatePoints(
+      createOrderDto.userId,
+      createOrderDto.price,
+    )
     const order = await this.orderService.create(createOrderDto)
-    console.log(order)
     return { order }
   }
 

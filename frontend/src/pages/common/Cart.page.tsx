@@ -64,7 +64,9 @@ const Cart = () => {
                 <div className='w-1/3'>Очакван час на доставка:</div>
               </div>
               <button
-                onClick={() => handleSubmit({ paymentMethod: 'card', price: price, userId: user.id })}
+                onClick={() =>
+                  handleSubmit({ paymentMethod: 'card', price: price, userId: user.id })
+                }
               >
                 Завърши поръчка
               </button>

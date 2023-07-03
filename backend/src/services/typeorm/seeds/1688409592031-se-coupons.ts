@@ -10,17 +10,19 @@ export class seCoupons1688409592031 implements MigrationInterface {
 
   public async up(): Promise<void> {
     const users = await this.userRepository.find()
-    await Promise.all(users.map(async (user) => {
-        const couponsData: Partial<UserCoupons> = createInstance(UserCoupons, { 
-            freeDelivery: 0,
-            thirtyPercentOff: 0,
-            tenPercentOff: 0,
-            twentyPercentOff: 0,
-            fiftyPercentOff: 0,
-          })
-          const coupons = await this.couponsRepository.save(couponsData)
-          await this.userRepository.update(user.id, { coupons })
-    }))
+    await Promise.all(
+      users.map(async (user) => {
+        const couponsData: Partial<UserCoupons> = createInstance(UserCoupons, {
+          freeDelivery: 0,
+          thirtyPercentOff: 0,
+          tenPercentOff: 0,
+          twentyPercentOff: 0,
+          fiftyPercentOff: 0,
+        })
+        const coupons = await this.couponsRepository.save(couponsData)
+        await this.userRepository.update(user.id, { coupons })
+      }),
+    )
   }
 
   public async down(): Promise<void> {

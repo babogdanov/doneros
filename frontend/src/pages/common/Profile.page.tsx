@@ -18,7 +18,9 @@ const Profile = () => {
       <label>Role</label>
       <p>{role} </p>
       <label>Your level: </label>
-      <p>{user.level.name} - points {user.points} </p>
+      <p>
+        {user.level.name} - points {user.points}{' '}
+      </p>
     </div>
   )
 }

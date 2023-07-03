@@ -14,15 +14,15 @@ const initialState: User = {
   level: {
     id: 0,
     name: '',
-    points: 0
+    points: 0,
   },
   coupons: {
     freeDelivery: 0,
     tenPercentOff: 0,
     twentyPercentOff: 0,
     thirtyPercentOff: 0,
-    fiftyPercentOff: 0
-  }
+    fiftyPercentOff: 0,
+  },
 }
 const useUser = () => {
   const { data: user } = useSyncQuery()
