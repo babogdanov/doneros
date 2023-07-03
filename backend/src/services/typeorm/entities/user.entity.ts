@@ -8,6 +8,7 @@ import {
   BeforeUpdate,
   OneToMany,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm'
 
 import { BaseEntity } from './base.entity'
@@ -49,10 +50,10 @@ export class User extends BaseEntity {
   orders: Order[]
 
   @OneToOne(() => UserCoupons, (userCoupons) => userCoupons.user)
+  @JoinColumn()
   coupons: UserCoupons
 
-  @OneToOne(() => Level, (level) => level.id)
-  @JoinColumn()
+  @ManyToOne(() => Level, (level) => level.id, { eager: true })
   level: Level
 
   @Column({ default: 0})

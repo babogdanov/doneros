@@ -29,16 +29,13 @@ export class levels1688408496356 implements MigrationInterface {
   private connection = getConnection('seed')
   private levelRepository = this.connection.getRepository(Level)
 
-  public async up(queryRunner: QueryRunner): Promise<void> {
+  public async up(): Promise<void> {
+    LEVEL_DATA = LEVEL_DATA.map((data) => createInstance(Level, { ...data }))
 
-    LEVEL_DATA = LEVEL_DATA.map((data) =>
-        createInstance(Level, { ...data }),
-    )
-
-    await this.levelRepository.save(LEVEL_DATA);
+    await this.levelRepository.save(LEVEL_DATA)
   }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
+  public async down(): Promise<void> {
     const levelNames = LEVEL_DATA.map((data) => data.name)
 
     const seededLevels = await this.levelRepository.find({

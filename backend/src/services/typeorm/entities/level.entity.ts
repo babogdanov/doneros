@@ -1,4 +1,4 @@
-import { Entity, Column, OneToOne } from 'typeorm'
+import { Entity, Column, OneToMany } from 'typeorm'
 import { BaseEntity } from './base.entity'
 // eslint-disable-next-line import/no-cycle
 import { User } from './user.entity'
@@ -11,6 +11,6 @@ export class Level extends BaseEntity {
   @Column()
   points: number
 
-  @OneToOne(() => User, (user) => user.level)
+  @OneToMany(() => User, (user) => user.level)
   userLevel: User
 }
