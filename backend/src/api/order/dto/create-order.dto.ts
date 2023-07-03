@@ -5,6 +5,9 @@ export class CreateOrderDto {
   paymentMethod: string
 
   @IsNotEmpty()
+  address: string
+
+  @IsNotEmpty()
   price: number
 
   @IsNotEmpty()

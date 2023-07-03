@@ -3,13 +3,9 @@ import { User } from './user'
 export type Order = {
   id: number
   paymentMethod: string
+  address: string
   price: number
   user: User
-}
-
-export type OrderRequest = {
-  paymentMethod: string
-  price: number
 }
 
 export type OrderResponse = {
@@ -18,6 +14,7 @@ export type OrderResponse = {
 
 export type CreateOrderRequest = {
   paymentMethod: string
+  address: string
   price: number
   userId: number
 }

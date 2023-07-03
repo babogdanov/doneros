@@ -9,3 +9,11 @@ export type Address = {
 export type AddressResponse = {
   address: Address
 }
+
+export type CreateAddressRequest = {
+  userId: number
+  city: string
+  street: string
+  number: number
+  postalCode: number
+}
