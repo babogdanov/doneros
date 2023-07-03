@@ -9,6 +9,9 @@ export class Order extends BaseEntity {
   @Column()
   paymentMethod: string
 
+  @Column()
+  address: string
+
   @Column({ type: 'numeric', precision: 10, scale: 2, default: 0 })
   price: number
 

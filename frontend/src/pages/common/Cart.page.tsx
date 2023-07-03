@@ -4,11 +4,11 @@ import useCartStore from '../../hooks/zustand/useCartStore'
 import { UserRole } from '../../types/user'
 import { useEffect, useState } from 'react'
 import Popup from '../../components/common/Popup'
-import { OrderRequest } from '../../types/order'
+import { CreateOrderRequest } from '../../types/order'
 import useCreateOrder from '../../api/hooks/order/mutations/useCreateOrder'
 
 const Cart = () => {
-  const { role, id } = useUser()
+  const user = useUser()
   const cart = useCartStore((state) => state.cart)
   const [isOpen, setIsOpen] = useState(false)
   const { mutate: create } = useCreateOrder()
@@ -22,13 +22,19 @@ const Cart = () => {
     setIsOpen(!isOpen)
   }
 
-  const handleSubmit = async (data: OrderRequest) => {
-    create({ ...data, userId: id })
+  const [formState, setFormState] = useState({
+    paymentMethod: 'card',
+    address: 'София, ул. Любен Каравелов, № 1, 1000',
+    price: '',
+  })
+
+  const handleSubmit = async (data: CreateOrderRequest) => {
+    create({ ...data, userId: user.id })
   }
 
   return (
     <div className='flex flex-col items-center justify-center'>
-      {role === UserRole.USER && (
+      {user.role === UserRole.USER && (
         <>
           <h3> Your cart: </h3>
           <div className='flex'>
@@ -59,12 +65,56 @@ const Cart = () => {
               </div>
               <h5>Крайна цена: {price}</h5>
               <div className='flex'>
-                <div className='w-1/3'>Избери адрес за доставка</div>
-                <div className='w-1/3'>Избери начин на плащане</div>
-                <div className='w-1/3'>Очакван час на доставка:</div>
+                <div className='w-1/3'>
+                  <div className=''>Избери адрес за доставка:</div>
+                  <select
+                    onChange={(event) =>
+                      setFormState((prevState) => ({
+                        ...prevState,
+                        address: event.target.value,
+                      }))
+                    }
+                  >
+                    {user.addresses.map((address, index) => (
+                      <option
+                        key={index}
+                        value={`${address.city}, ${address.street}, ${address.number}, ${address.postalCode}`}
+                      >
+                        {address.city}, {address.street}, {address.number},
+                        {address.postalCode}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className='w-1/3'>
+                  <div>Избери начин на плащане:</div>
+                  <select
+                    onChange={(event) =>
+                      setFormState((prevState) => ({
+                        ...prevState,
+                        paymentMethod: event.target.value,
+                      }))
+                    }
+                  >
+                    <option key={1} value={'card'}>
+                      Плащане с карта
+                    </option>
+                    <option key={2} value={'cash'}>
+                      Наложен платеж
+                    </option>
+                  </select>
+                </div>
               </div>
               <button
-                onClick={() => handleSubmit({ paymentMethod: 'card', price: price })}
+                onClick={() =>
+                  handleSubmit({
+                    paymentMethod: formState.paymentMethod,
+                    address: formState.address,
+                    price: +price,
+                    userId: user.id,
+                  })
+                }
               >
                 Завърши поръчка
               </button>
