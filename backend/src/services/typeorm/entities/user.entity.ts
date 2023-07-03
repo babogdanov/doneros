@@ -64,7 +64,7 @@ export class User extends BaseEntity {
     eager: true,
   })
   addresses: Address[]
-  
+
   @OneToOne(() => ResetToken)
   resetToken: ResetToken
 
@@ -76,5 +76,4 @@ export class User extends BaseEntity {
     const hashedPassword = bcrypt.hashSync(this.password, salt)
     this.password = hashedPassword
   }
-
 }

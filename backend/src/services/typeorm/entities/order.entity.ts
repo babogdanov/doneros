@@ -10,7 +10,10 @@ export class Order extends BaseEntity {
   @Column()
   paymentMethod: string
 
-  @ManyToOne(() => Address, (address) => address.orders, { eager: true, nullable: true })
+  @ManyToOne(() => Address, (address) => address.orders, {
+    eager: true,
+    nullable: true,
+  })
   address: Address
 
   @Column({ type: 'numeric', precision: 10, scale: 2, default: 0 })
