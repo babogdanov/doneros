@@ -33,10 +33,16 @@ export class OrderController {
     return { orders }
   }
 
-  @Get('/:id')
+  @Get('/courier/:id')
   async findAllForCourierId(@Param('id') courierId: number) {
     const courierOrders = await this.orderService.findForCourierId(courierId)
     return { orders: courierOrders }
+  }
+
+  @Get('/user/:id')
+  async findAllForUserId(@Param('id') userId: number) {
+    const userOrders = await this.orderService.findForUserId(userId)
+    return { orders: userOrders }
   }
 
   @Put('/update')

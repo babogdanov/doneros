@@ -4,7 +4,7 @@ import useUser from '../../hooks/useUser'
 
 const Orders = () => {
   const { id } = useUser()
-  const { data, isLoading, isError } = useGetMyOrders(id)
+  const { data, isLoading, isError } = useGetMyOrders({userId: id, isCourier: true})
   if (isLoading) {
     return <div> loading </div>
   }

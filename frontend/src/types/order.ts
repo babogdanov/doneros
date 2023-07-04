@@ -38,7 +38,7 @@ export type CreateOrderRequest = {
 export type UpdateOrderStatusRequest = {
   id: number
   status: OrderStatus
-  courierId?  : number
+  courierId?: number
 }
 
 export type UpdateOrderStatusResponse = Order

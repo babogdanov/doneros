@@ -61,6 +61,15 @@ export class OrderService {
     return orders
   }
 
+  async findForUserId(userId: number) {
+    const user = await this.userRepository.findOneOrFail(userId)
+    const orders = await this.orderRepository.find({
+      where: { user },
+      relations: ['menuItems', 'menuItems.restaurant', 'courier'],
+    })
+    return orders
+  }
+
   async updateOrder(updateOrderDto: UpdateOrderDto) {
     const { id, status, courierId } = updateOrderDto
     const courier = createInstance(Courier, { id: courierId })

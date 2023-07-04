@@ -10,6 +10,7 @@ import Login from './pages/common/Login.page'
 import UserRestaurantList from './pages/common/UserRestaurantList.page'
 import Profile from './pages/common/Profile.page'
 import Restaurant from './pages/common/UserRestaurant.page'
+import UserOrders from './pages/common/UserOrders.page'
 // Manager pages
 import RestaurantMenuEdit from './pages/manager/RestaurantMenuEdit.page'
 import RestaurantMenuCreate from './pages/manager/RestaurantMenuCreate.page'
@@ -42,6 +43,7 @@ const AppRoutes = () => {
 
         <Route element={<ProtectedRoute allowedRoles={[UserRole.USER]} />}>
           <Route path='/cart' element={<Cart />} />
+          <Route path='/user/orders' element={<UserOrders />} />
         </Route>
 
         <Route element={<ProtectedRoute allowCourier />}>

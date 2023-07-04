@@ -6,13 +6,8 @@ type OrderCardProps = {
   order: Order
 }
 
-/* const getButtonPropsFromStatus = (status: OrderStatus) => {
-  switch(orderStatus) {
-
-  }
-} */
 const OrderCard = ({ order }: OrderCardProps) => {
-  const { id: userId } = useUser()
+  const { id: userId, isCourier } = useUser()
   const { address, paymentMethod, price, menuItems, status, id, courier } = order
 
   const { mutate } = useUpdateOrder('/orders')
@@ -39,69 +34,35 @@ const OrderCard = ({ order }: OrderCardProps) => {
           <li key={item.id}> {`${item.name} from ${item.restaurant.name}`} </li>
         ))}
       </ul>
-      <>
-        {status === OrderStatus.CREATED && (
-          <button
-            className=' bg-green-400 text-white hover:bg-green-600 hover:text-white'
-            onClick={() =>
-              handleUpdateOrderStatus({
-                orderStatus: OrderStatus.IN_PROGRESS,
-                courierId: userId,
-              })
-            }
-          >
-            Pick up
-          </button>
-        )}
 
-        {status === OrderStatus.IN_PROGRESS && userId === courier?.id && (
-          <button
-            className=' bg-green-400 text-white hover:bg-green-600 hover:text-white'
-            onClick={() =>
-              handleUpdateOrderStatus({ orderStatus: OrderStatus.COMPLETED })
-            }
-          >
-            Mark as delivered
-          </button>
-        )}
-      </>
-      {/* {!isManagerView && (
+      {!isCourier && status !== OrderStatus.CREATED && (<p>{`Courier: ${order.courier.email}`}</p>)}
+      {isCourier && (
         <>
-          <button
-            className='h-1/6 w-full bg-lime-500 font-semibold text-white hover:bg-lime-400 hover:text-white'
-            onClick={handleAddToCart}
-          >
-            Add to cart
-          </button>
-          <button
-            className='w-full bg-red-500 text-white hover:bg-red-600 hover:text-white'
-            onClick={() => {
-              removeFromCart(id)
-              window.location.reload()
-            }}
-          >
-            Remove from cart
-          </button>
+          {status === OrderStatus.CREATED && (
+            <button
+              className=' bg-green-400 text-white hover:bg-green-600 hover:text-white'
+              onClick={() =>
+                handleUpdateOrderStatus({
+                  orderStatus: OrderStatus.IN_PROGRESS,
+                  courierId: userId,
+                })
+              }
+            >
+              Pick up
+            </button>
+          )}
+          {status === OrderStatus.IN_PROGRESS && userId === courier?.id && (
+            <button
+              className=' bg-green-400 text-white hover:bg-green-600 hover:text-white'
+              onClick={() =>
+                handleUpdateOrderStatus({ orderStatus: OrderStatus.COMPLETED })
+              }
+            >
+              Mark as delivered
+            </button>
+          )}
         </>
       )}
-
-      {isManagerView && (
-        <>
-          <button
-            className='w-1/2 bg-orange-400 text-white hover:bg-orange-600 hover:text-white'
-            onClick={() => navigate(`/manager/edit-menu-item/${id}`)}
-          >
-            Edit
-          </button>
-
-          <button
-            className='w-1/2 bg-red-500 text-white hover:bg-red-600 hover:text-white'
-            onClick={() => deleteMenuItem()}
-          >
-            Delete
-          </button>
-        </>
-      )} */}
     </div>
   )
 }
