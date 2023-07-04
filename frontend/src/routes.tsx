@@ -24,6 +24,7 @@ import AdminHome from './pages/admin/AdminHome.page'
 import Orders from './pages/courier/Orders.page'
 import Cart from './pages/common/Cart.page'
 import OrderTracking from './pages/common/OrderTracking.page'
+import Home from './pages/common/Home.page'
 
 const AppRoutes = () => {
   return (
