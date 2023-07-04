@@ -5,7 +5,9 @@ type GetOrdersProps = {
   userId: number
   isCourier?: boolean
 }
-const useGetMyOrders = ({ userId, isCourier = false} : GetOrdersProps) =>
-  useBaseQuery<GetOrdersResponse>({ apiParams: { path: `/order/${isCourier ? 'courier' : 'user'}/${userId}` } })
+const useGetMyOrders = ({ userId, isCourier = false }: GetOrdersProps) =>
+  useBaseQuery<GetOrdersResponse>({
+    apiParams: { path: `/order/${isCourier ? 'courier' : 'user'}/${userId}` },
+  })
 
 export default useGetMyOrders

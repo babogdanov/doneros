@@ -17,8 +17,8 @@ const getNavbarLinksForRole = (user: User) => {
       return [
         { path: '/home', label: 'Home' },
         { path: '/restaurants', label: 'Restaurants' },
-        { path: '/user/orders', label: 'My orders'},
-        { path: '/cart', label: 'Cart'},
+        { path: '/user/orders', label: 'My orders' },
+        { path: '/cart', label: 'Cart' },
       ]
     case UserRole.MANAGER:
       return [

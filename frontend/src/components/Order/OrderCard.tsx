@@ -35,7 +35,9 @@ const OrderCard = ({ order }: OrderCardProps) => {
         ))}
       </ul>
 
-      {!isCourier && status !== OrderStatus.CREATED && (<p>{`Courier: ${order.courier.email}`}</p>)}
+      {!isCourier && status !== OrderStatus.CREATED && (
+        <p>{`Courier: ${order.courier.email}`}</p>
+      )}
       {isCourier && (
         <>
           {status === OrderStatus.CREATED && (
