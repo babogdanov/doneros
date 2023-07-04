@@ -28,7 +28,7 @@ export class OrderService {
       .save()
     const points = Math.round(order.price / 10)
     await this.userRepository.update(userId, { points })
-    
+
     return { order }
   }
 

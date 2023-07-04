@@ -8,9 +8,7 @@ import { CreateOrderDto } from './dto/create-order.dto'
 @UseGuards(JwtAuthGuard)
 @Controller('order')
 export class OrderController {
-  constructor(
-    private readonly orderService: OrderService,
-  ) {}
+  constructor(private readonly orderService: OrderService) {}
 
   @UseGuards(new RolesGuard([UserRole.USER, UserRole.ADMIN]))
   @Post()
