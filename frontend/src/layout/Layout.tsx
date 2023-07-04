@@ -47,7 +47,7 @@ const Layout = () => {
 
   return (
     <>
-      <div className='flex w-screen flex-col px-4'>
+      <div className=' flex w-screen flex-col p-0 px-4'>
         <div className='h-28 w-full border-gray-800'>
           <Navbar
             homePath='/home'
@@ -55,7 +55,7 @@ const Layout = () => {
             isLoggedIn={!!user.accessToken}
           />
         </div>
-        <div className='flex h-full w-full items-center justify-center'>
+        <div className='flex h-full w-full items-center justify-center p-0'>
           <Outlet />
         </div>
       </div>

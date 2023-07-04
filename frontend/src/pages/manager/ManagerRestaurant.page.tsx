@@ -38,6 +38,12 @@ const ManagerRestaurant = () => {
         >
           +
         </button>
+        <button
+          className='rounded bg-green-400  font-bold text-white hover:bg-green-500 focus:outline-none'
+          onClick={() => navigate(`/manager/restaurants/${id}/storage`)}
+        >
+          Restourant Storage
+        </button>
       </div>
     </>
   )

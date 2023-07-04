@@ -16,6 +16,7 @@ import RestaurantMenuEdit from './pages/manager/RestaurantMenuEdit.page'
 import RestaurantMenuCreate from './pages/manager/RestaurantMenuCreate.page'
 import ManagerRestaurant from './pages/manager/ManagerRestaurant.page'
 import ManagerRestaurantList from './pages/manager/ManagerRestaurantList.page'
+import Storage from './pages/manager/Storage.page'
 // Courier pages
 import CourierHome from './pages/courier/CourierHome.page'
 // Admin pages
@@ -23,11 +24,13 @@ import AdminHome from './pages/admin/AdminHome.page'
 import Orders from './pages/courier/Orders.page'
 import Cart from './pages/common/Cart.page'
 import OrderTracking from './pages/common/OrderTracking.page'
+import Home from './pages/common/Home.page'
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
+      <Route path='/' element={<Home />} />
         <Route element={<ProtectedRoute notLoggedInAllowed='only' />}>
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
@@ -61,6 +64,7 @@ const AppRoutes = () => {
         >
           <Route path='/manager/restaurants' element={<ManagerRestaurantList />} />
           <Route path='/manager/restaurants/:id' element={<ManagerRestaurant />} />
+          <Route path='/manager/restaurants/:id/storage' element={<Storage />} />
           <Route path='/manager/edit-menu-item/:id' element={<RestaurantMenuEdit />} />
           <Route
             path='/manager/create-menu-item/:id'
