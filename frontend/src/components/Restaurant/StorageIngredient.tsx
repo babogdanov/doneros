@@ -1,33 +1,33 @@
-import { useState } from 'react';
-import useDeleteIngredient from '../../api/hooks/ingredient/useDeleteIngredient';
-import { Ingredient } from '../../types/ingredient';
-import useEditIngredient from '../../api/hooks/ingredient/useEditIngredient';
+import { useState } from 'react'
+import useDeleteIngredient from '../../api/hooks/ingredient/useDeleteIngredient'
+import { Ingredient } from '../../types/ingredient'
+import useEditIngredient from '../../api/hooks/ingredient/useEditIngredient'
 
 type IngredientProps = {
-  ingredient: Ingredient;
-};
+  ingredient: Ingredient
+}
 
 const StorageIngredient = ({ ingredient }: IngredientProps) => {
-  const { id, name, quantity } = ingredient;
+  const { id, name, quantity } = ingredient
 
-  const { mutate: deleteIngredient } = useDeleteIngredient(`${id}`);
-  const { mutate: updateIngredient } = useEditIngredient(`${id}`);
-  
-  const [showInputFields, setShowInputFields] = useState(false);
-  const [newName, setNewName] = useState(name);
-  const [newQuantity, setNewQuantity] = useState(quantity);
-  const [buttonLabel, setButtonLabel] = useState('Обнови');
+  const { mutate: deleteIngredient } = useDeleteIngredient(`${id}`)
+  const { mutate: updateIngredient } = useEditIngredient(`${id}`)
+
+  const [showInputFields, setShowInputFields] = useState(false)
+  const [newName, setNewName] = useState(name)
+  const [newQuantity, setNewQuantity] = useState(quantity)
+  const [buttonLabel, setButtonLabel] = useState('Обнови')
 
   const handleButtonClick = () => {
     if (showInputFields) {
-      setButtonLabel('Обнови');
-      setShowInputFields(false);
-      updateIngredient({ name: newName, quantity: newQuantity });
+      setButtonLabel('Обнови')
+      setShowInputFields(false)
+      updateIngredient({ name: newName, quantity: newQuantity })
     } else {
-      setButtonLabel('Запази');
-      setShowInputFields(true);
+      setButtonLabel('Запази')
+      setShowInputFields(true)
     }
-  };
+  }
 
   return (
     <div className='m-5 mb-16 h-5/6 w-96 rounded-lg bg-white text-center font-sans shadow-lg'>
@@ -60,7 +60,7 @@ const StorageIngredient = ({ ingredient }: IngredientProps) => {
       <button
         className='w-full bg-red-500 text-white hover:bg-red-600 hover:text-white'
         onClick={() => {
-          deleteIngredient();
+          deleteIngredient()
         }}
       >
         Премахни
@@ -69,7 +69,7 @@ const StorageIngredient = ({ ingredient }: IngredientProps) => {
         {buttonLabel}
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default StorageIngredient;
+export default StorageIngredient

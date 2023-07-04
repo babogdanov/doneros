@@ -14,7 +14,7 @@ const OrderTracking = () => {
   const { data, isLoading, isError, refetch: refetchOrder } = useGetOrder(Number(orderId))
   const courierId = data?.order?.courier?.id
   const { data: courierLocation, refetch: refetchCourierLocation } =
-  // @ts-ignore
+    // @ts-ignore
     usePollCourierLocation(courierId)
 
   useEffect(() => {
