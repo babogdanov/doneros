@@ -26,6 +26,12 @@ export class Courier extends BaseEntity {
   @Column({ default: true })
   isCourier: boolean
 
+  @Column('numeric', { nullable: true })
+  latitude: number
+
+  @Column('numeric', { nullable: true })
+  longitude: number
+
   @BeforeInsert()
   @BeforeUpdate()
   hashPassword() {

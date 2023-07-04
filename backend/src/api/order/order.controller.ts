@@ -13,6 +13,7 @@ import { RolesGuard } from '@guards/role.guard'
 import { OrderService } from './order.service'
 import { CreateOrderDto } from './dto/create-order.dto'
 import { UpdateOrderDto } from './dto/update-order.dto'
+import { CourierLocationDto } from './dto/courier-location.dto'
 
 @UseGuards(JwtAuthGuard)
 @Controller('order')
@@ -33,10 +34,33 @@ export class OrderController {
     return { orders }
   }
 
+  @Get('/courier-location/:id')
+  async findCourierLocation(@Param('id') courierId: number) {
+    console.log('get location')
+
+    const location = await this.orderService.findCourierLocation(courierId)
+    return { courierId, location }
+  }
+
   @Get('/courier/:id')
   async findAllForCourierId(@Param('id') courierId: number) {
     const courierOrders = await this.orderService.findForCourierId(courierId)
     return { orders: courierOrders }
+  }
+
+  @Get(':id')
+  async findOrderById(@Param('id') orderId: number) {
+    const order = await this.orderService.findOne(orderId)
+    return { order }
+  }
+
+  @Put('/courier/update-location')
+  async updateCourierLocation(@Body() courierLocationDto: CourierLocationDto) {
+    console.log('update location')
+    const res = await this.orderService.updateCourierLocation(
+      courierLocationDto,
+    )
+    return { res }
   }
 
   @Get('/user/:id')

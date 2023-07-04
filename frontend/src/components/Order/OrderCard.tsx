@@ -10,7 +10,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
   const { id: userId, isCourier } = useUser()
   const { address, paymentMethod, price, menuItems, status, id, courier } = order
 
-  const { mutate } = useUpdateOrder('/orders')
+  const { mutate: updateOrder } = useUpdateOrder('/orders')
 
   const handleUpdateOrderStatus = ({
     orderStatus,
@@ -19,7 +19,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
     orderStatus: OrderStatus
     courierId?: number
   }) => {
-    mutate({ id, status: orderStatus, courierId })
+    updateOrder({ id, status: orderStatus, courierId })
   }
 
   return (

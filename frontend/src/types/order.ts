@@ -41,4 +41,16 @@ export type UpdateOrderStatusRequest = {
   courierId?: number
 }
 
+export type GetCourierLocationResponse = {
+  courierId: number
+  location: {
+    latitude: number
+    longitude: number
+  }
+}
+
+export type UpdateCourierLocationRequest = GetCourierLocationResponse
+
+export type UpdateCourierLocationResponse = GetCourierLocationResponse
+
 export type UpdateOrderStatusResponse = Order

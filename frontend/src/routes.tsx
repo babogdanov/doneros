@@ -22,6 +22,7 @@ import CourierHome from './pages/courier/CourierHome.page'
 import AdminHome from './pages/admin/AdminHome.page'
 import Orders from './pages/courier/Orders.page'
 import Cart from './pages/common/Cart.page'
+import OrderTracking from './pages/common/OrderTracking.page'
 
 const AppRoutes = () => {
   return (
@@ -44,6 +45,7 @@ const AppRoutes = () => {
         <Route element={<ProtectedRoute allowedRoles={[UserRole.USER]} />}>
           <Route path='/cart' element={<Cart />} />
           <Route path='/user/orders' element={<UserOrders />} />
+          <Route path='/order-tracking/:orderId' element={<OrderTracking />} />
         </Route>
 
         <Route element={<ProtectedRoute allowCourier />}>

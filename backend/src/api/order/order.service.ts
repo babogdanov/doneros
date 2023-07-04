@@ -10,6 +10,7 @@ import { MenuItem } from '@entities/menu-item.entity'
 import { Courier } from '@entities/courier.entity'
 import { CreateOrderDto } from './dto/create-order.dto'
 import { UpdateOrderDto } from './dto/update-order.dto'
+import { CourierLocationDto } from './dto/courier-location.dto'
 
 @Injectable()
 export class OrderService {
@@ -75,6 +76,35 @@ export class OrderService {
     const courier = createInstance(Courier, { id: courierId })
     const updateValues = courierId ? { status, courier } : { status }
     const order = await this.orderRepository.update(id, updateValues)
+    return order
+  }
+
+  async updateCourierLocation(courierLocationDto: CourierLocationDto) {
+    const {
+      courierId,
+      // location: { latitude, longitude },
+    } = courierLocationDto
+    const { latitude, longitude } = await this.courierRepository.findOneOrFail(
+      courierId,
+    )
+    await this.courierRepository.update(courierId, {
+      latitude: +latitude + 0.001,
+      longitude: +longitude + 0.001,
+    })
+    return { courierId, latitude, longitude }
+  }
+
+  async findCourierLocation(courierId: number) {
+    const { latitude, longitude } = await this.courierRepository.findOneOrFail(
+      courierId,
+    )
+    return { latitude, longitude }
+  }
+
+  async findOne(orderId: number) {
+    const order = await this.orderRepository.findOneOrFail(orderId, {
+      relations: ['courier'],
+    })
     return order
   }
 }
