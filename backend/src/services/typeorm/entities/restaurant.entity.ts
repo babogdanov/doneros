@@ -3,6 +3,7 @@ import { Entity, Column, OneToMany, OneToOne, JoinColumn } from 'typeorm'
 import { BaseEntity } from './base.entity'
 import { MenuItem } from './menu-item.entity'
 import { User } from './user.entity'
+import { Ingredient } from './ingredients.entity'
 
 @Entity()
 export class Restaurant extends BaseEntity {
@@ -19,6 +20,11 @@ export class Restaurant extends BaseEntity {
     eager: true,
   })
   menuItems: MenuItem[]
+
+  @OneToMany(() => Ingredient, (ingredient) => ingredient.restaurant, {
+    eager: true,
+  })
+  Ingredients: Ingredient[]
 
   @OneToOne(() => User, { eager: true })
   @JoinColumn()
