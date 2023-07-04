@@ -5,10 +5,14 @@ import * as bcrypt from 'bcrypt'
 
 import type { FindConditions, Repository } from 'typeorm'
 
-import type { UserWithoutPassword } from '@models/user-without-password'
+import type {
+  CourierWithoutPassword,
+  UserWithoutPassword,
+} from '@models/user-without-password'
 
 import { User } from '@entities/user.entity'
 import { ResetToken } from '@entities/reset-token.entity'
+import { Courier } from '@entities/courier.entity'
 import { LoginDto } from './dto/login.dto'
 
 @Injectable()
@@ -19,14 +23,23 @@ export class AuthService {
     // @ts-ignore
     @InjectRepository(ResetToken)
     private readonly resetTokenRepository: Repository<ResetToken>,
+    // @ts-ignore
+    @InjectRepository(Courier)
+    private readonly courierRepository: Repository<Courier>,
     private readonly jwtService: JwtService,
   ) {}
 
   async validateUser(
     email: string,
     password: string,
+    isCourier: boolean,
   ): Promise<UserWithoutPassword | null> {
-    const user = await this.userRepository.findOne({ email })
+    let user
+    if (isCourier) {
+      user = await this.courierRepository.findOne({ email })
+    } else {
+      user = await this.userRepository.findOne({ email })
+    }
 
     // user not found
     const isUser = !!user
@@ -46,15 +59,22 @@ export class AuthService {
     return user
   }
 
-  generateJWTToken(user: UserWithoutPassword) {
+  generateJWTToken(user: UserWithoutPassword | CourierWithoutPassword) {
     const accessToken = this.jwtService.sign({ ...user })
     return accessToken
   }
 
   async getUser(
     conditions: FindConditions<User>,
+    isCourier: boolean,
   ): Promise<UserWithoutPassword | undefined> {
-    const user = await this.userRepository.findOne(conditions)
+    let user
+    if (isCourier) {
+      user = await this.courierRepository.findOne(conditions)
+    } else {
+      user = await this.userRepository.findOne(conditions)
+    }
+
     // @ts-ignore
     delete user?.password
 

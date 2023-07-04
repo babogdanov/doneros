@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import useLogout from '../../hooks/useLogout'
-import useUser from '../../hooks/useUser'
 import logo from '../../../resources/logo.png'
 
 type NavbarProps = {

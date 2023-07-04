@@ -1,9 +1,18 @@
-import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  UseGuards,
+  Put,
+} from '@nestjs/common'
 import { JwtAuthGuard } from '@guards/jwt.guard'
 import { UserRole } from '@entities/user.entity'
 import { RolesGuard } from '@guards/role.guard'
 import { OrderService } from './order.service'
 import { CreateOrderDto } from './dto/create-order.dto'
+import { UpdateOrderDto } from './dto/update-order.dto'
 
 @UseGuards(JwtAuthGuard)
 @Controller('order')
@@ -17,13 +26,22 @@ export class OrderController {
     return { order }
   }
 
-  @Get()
-  findAll() {
-    return this.orderService.findAll()
+  @Get('/all-available')
+  async findAllAvailable() {
+    const orders = await this.orderService.findAllAvailable()
+
+    return { orders }
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.orderService.findOne(+id)
+  @Get('/:id')
+  async findAllForCourierId(@Param('id') courierId: number) {
+    const courierOrders = await this.orderService.findForCourierId(courierId)
+    return { orders: courierOrders }
+  }
+
+  @Put('/update')
+  async updateOrder(@Body() updateOrderDto: UpdateOrderDto) {
+    const order = await this.orderService.updateOrder(updateOrderDto)
+    return { order }
   }
 }

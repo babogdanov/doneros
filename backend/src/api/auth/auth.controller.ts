@@ -23,24 +23,30 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Get('sync')
   async sync(@Req() req: Request): Promise<UserWithAccessToken> {
-    const userWithoutPassword = await this.authService.getUser({
-      id: req.user.id,
-    })
+    // @ts-ignore
+    const isCourier = req.user?.isCourier
+
+    const userWithoutPassword = await this.authService.getUser(
+      {
+        id: req.user.id,
+      },
+      isCourier,
+    )
 
     if (!userWithoutPassword) {
       throw new NotFoundException('User not found.')
     }
     const accessToken = this.authService.generateJWTToken(userWithoutPassword)
-
     return { ...userWithoutPassword, accessToken }
   }
 
   @Post('login')
   async login(@Body() loginDto: LoginDto): Promise<UserWithAccessToken> {
-    const { email, password } = loginDto
+    const { email, password, isCourier } = loginDto
     const userWithoutPassword = await this.authService.validateUser(
       email,
       password,
+      isCourier,
     )
 
     if (!userWithoutPassword) {
@@ -56,9 +62,12 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() registerDto: LoginDto) {
-    const userExists = await this.authService.getUser({
-      email: registerDto.email,
-    })
+    const userExists = await this.authService.getUser(
+      {
+        email: registerDto.email,
+      },
+      false,
+    )
 
     if (userExists) {
       throw new ConflictException('User already exists.')

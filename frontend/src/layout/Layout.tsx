@@ -1,19 +1,22 @@
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/common/Navbar'
 import useUser from '../hooks/useUser'
-import { UserRole } from '../types/user'
+import { User, UserRole } from '../types/user'
 
-const getNavbarLinksForRole = (userRole: UserRole) => {
+const getNavbarLinksForRole = (user: User) => {
+  const userRole = user.role
+
+  if (user.isCourier) {
+    return [
+      { path: '/home/courier', label: 'Home' },
+      { path: '/orders', label: 'My Orders' },
+    ]
+  }
   switch (userRole) {
     case UserRole.USER:
       return [
         { path: '/home', label: 'Home' },
         { path: '/restaurants', label: 'Restaurants' },
-      ]
-    case UserRole.COURIER:
-      return [
-        { path: '/home/courier', label: 'Home' },
-        { path: '/orders', label: 'Orders' },
       ]
     case UserRole.MANAGER:
       return [
@@ -38,7 +41,7 @@ const getNavbarLinksForRole = (userRole: UserRole) => {
 const Layout = () => {
   const user = useUser()
 
-  const navbarLinks = getNavbarLinksForRole(user.role)
+  const navbarLinks = getNavbarLinksForRole(user)
 
   return (
     <>

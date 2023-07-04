@@ -1,8 +1,10 @@
-import useGetAvailableOrders from '../../api/hooks/order/queries/useGetAvailableOrders'
+import useGetMyOrders from '../../api/hooks/order/queries/useGetMyOrders'
 import OrderCard from '../../components/Order/OrderCard'
+import useUser from '../../hooks/useUser'
 
-const CourierHome = () => {
-  const { data, isLoading, isError } = useGetAvailableOrders()
+const Orders = () => {
+  const { id } = useUser()
+  const { data, isLoading, isError } = useGetMyOrders(id)
   if (isLoading) {
     return <div> loading </div>
   }
@@ -13,7 +15,7 @@ const CourierHome = () => {
 
   return (
     <div>
-      <h3 className='text-center'> Available orders </h3>
+      <h3 className='text-center'> My orders </h3>
       {data.orders.map((order) => (
         <OrderCard key={order.id} order={order} />
       ))}
@@ -21,4 +23,4 @@ const CourierHome = () => {
   )
 }
 
-export default CourierHome
+export default Orders

@@ -1,3 +1,4 @@
+import { Courier } from '@entities/courier.entity'
 import { User } from '@entities/user.entity'
 
 type RemovedUserProperties =
@@ -11,3 +12,4 @@ type RemovedUserProperties =
   | 'password'
 
 export type UserWithoutPassword = Omit<User, RemovedUserProperties>
+export type CourierWithoutPassword = Omit<Courier, RemovedUserProperties>

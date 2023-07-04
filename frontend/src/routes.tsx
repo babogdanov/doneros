@@ -5,7 +5,6 @@ import ProtectedRoute from './layout/ProtectedRoute'
 import { UserRole } from './types/user'
 
 // Common pages
-import Home from './pages/common/Home.page'
 import Register from './pages/common/Register.page'
 import Login from './pages/common/Login.page'
 import UserRestaurantList from './pages/common/UserRestaurantList.page'
@@ -20,7 +19,7 @@ import ManagerRestaurantList from './pages/manager/ManagerRestaurantList.page'
 import CourierHome from './pages/courier/CourierHome.page'
 // Admin pages
 import AdminHome from './pages/admin/AdminHome.page'
-import Orders from './pages/common/Orders.page'
+import Orders from './pages/courier/Orders.page'
 import Cart from './pages/common/Cart.page'
 
 const AppRoutes = () => {
@@ -45,13 +44,11 @@ const AppRoutes = () => {
           <Route path='/cart' element={<Cart />} />
         </Route>
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute allowCourier />}>
           <Route path='/profile' element={<Profile />} />
         </Route>
 
-        <Route
-          element={<ProtectedRoute allowedRoles={[UserRole.COURIER, UserRole.ADMIN]} />}
-        >
+        <Route element={<ProtectedRoute allowedRoles={[UserRole.ADMIN]} allowCourier />}>
           <Route path='/home/courier' element={<CourierHome />} />
         </Route>
 
@@ -70,7 +67,8 @@ const AppRoutes = () => {
         <Route
           element={
             <ProtectedRoute
-              allowedRoles={[UserRole.COURIER, UserRole.MANAGER, UserRole.ADMIN]}
+              allowedRoles={[UserRole.MANAGER, UserRole.ADMIN]}
+              allowCourier
             />
           }
         >

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { MenuItemRequest, MenuItemResponse } from '../../../types/menu-item'
-import useBaseMutation from '../useBaseMutation'
+import { MenuItemRequest, MenuItemResponse } from '../../../../types/menu-item'
+import useBaseMutation from '../../useBaseMutation'
 
 const useEditMenuItem = (id: string) => {
   const navigate = useNavigate()
