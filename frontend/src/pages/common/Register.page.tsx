@@ -12,6 +12,7 @@ const Register = () => {
     password: '',
     confirmPassword: '',
     phoneNumber: '',
+    isCourier: false,
   })
 
   const { mutate: register } = useRegisterMutation()

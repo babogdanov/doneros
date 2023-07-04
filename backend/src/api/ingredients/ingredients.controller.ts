@@ -1,10 +1,19 @@
-import { Controller, Get, Post, Body, Param, Delete, UseGuards, Put } from '@nestjs/common';
-import { JwtAuthGuard } from '@guards/jwt.guard';
-import { RolesGuard } from '@guards/role.guard';
-import { UserRole } from '@entities/user.entity';
-import { IngredientsService } from './ingredients.service';
-import { CreateIngredientDto } from './dto/create-ingredient.dto';
-import { UpdateIngredientDto } from './dto/update-ingredient.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+  Put,
+} from '@nestjs/common'
+import { JwtAuthGuard } from '@guards/jwt.guard'
+import { RolesGuard } from '@guards/role.guard'
+import { UserRole } from '@entities/user.entity'
+import { IngredientsService } from './ingredients.service'
+import { CreateIngredientDto } from './dto/create-ingredient.dto'
+import { UpdateIngredientDto } from './dto/update-ingredient.dto'
 
 @Controller('storage')
 export class IngredientsController {
@@ -35,7 +44,10 @@ export class IngredientsController {
     @Param('id') id: string,
     @Body() updateIngredientDto: UpdateIngredientDto,
   ) {
-    const menuItem = await this.ingredientsService.update(+id, updateIngredientDto)
+    const menuItem = await this.ingredientsService.update(
+      +id,
+      updateIngredientDto,
+    )
     return { menuItem }
   }
 

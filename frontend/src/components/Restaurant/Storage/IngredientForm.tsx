@@ -21,8 +21,6 @@ const IngredientForm = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { name, quantity } = formData
 
-
-
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prevState) => ({
@@ -47,10 +45,7 @@ const IngredientForm = ({
         onSubmit={onSubmit}
       >
         <div>
-          <label
-            className='mb-2 block text-sm font-bold text-gray-700'
-            htmlFor='name'
-          >
+          <label className='mb-2 block text-sm font-bold text-gray-700' htmlFor='name'>
             New product:
           </label>
           <input
@@ -61,7 +56,7 @@ const IngredientForm = ({
             onChange={handleChange}
           />
         </div>
-        
+
         <button
           className='rounded bg-orange-400 font-bold text-white hover:bg-orange-600 '
           type='submit'

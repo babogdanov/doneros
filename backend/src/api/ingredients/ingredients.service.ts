@@ -26,7 +26,7 @@ export class IngredientsService {
     const res = await this.findOne(id)
     return res
   }
-  
+
   async findAll() {
     const res = await this.ingredientRepository.find({
       relations: ['restaurant'],
@@ -46,8 +46,8 @@ export class IngredientsService {
     const res = await this.ingredientRepository.find({
       where: { restaurant: { id: restaurantId } },
       relations: ['restaurant'],
-    });
-    return res;
+    })
+    return res
   }
 
   async update(id: number, updateIngredientDto: UpdateIngredientDto) {

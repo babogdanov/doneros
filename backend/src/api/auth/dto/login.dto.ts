@@ -9,6 +9,5 @@ export class LoginDto extends EmailDto {
   password: string
 
   @IsBoolean()
-  @IsNotEmpty()
   isCourier: boolean
 }
