@@ -1,5 +1,5 @@
-import { MenuItemResponse } from '../../../types/menu-item'
-import useBaseMutation from '../useBaseMutation'
+import { MenuItemResponse } from '../../../../types/menu-item'
+import useBaseMutation from '../../useBaseMutation'
 
 const useDeleteMenuItem = (id: string) => {
   return useBaseMutation<void, MenuItemResponse>({

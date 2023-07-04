@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import useLogout from '../../hooks/useLogout'
-import useUser from '../../hooks/useUser'
 import logo from '../../../resources/logo.png'
 
 type NavbarProps = {
@@ -38,9 +37,6 @@ const Navbar = ({ homePath, navbarLinks, isLoggedIn }: NavbarProps) => {
         <div className='mr-20 flex items-center justify-between gap-10'>
           {isLoggedIn ? (
             <>
-              <Link to='/cart' className='mr-4 flex font-bold text-white '>
-                Cart
-              </Link>
               <Link to='/profile' className='mr-4 flex font-bold text-white '>
                 Profile
               </Link>

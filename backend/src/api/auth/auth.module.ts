@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt'
 
 import { User } from '@entities/user.entity'
 import { ResetToken } from '@entities/reset-token.entity'
+import { Courier } from '@entities/courier.entity'
 import { AuthService } from './auth.service'
 import { JwtStrategy } from '../../auth/strategies/jwt.strategy'
 import { AuthController } from './auth.controller'
@@ -13,7 +14,7 @@ import { AuthController } from './auth.controller'
 @Module({
   imports: [
     PassportModule,
-    TypeOrmModule.forFeature([User, ResetToken]),
+    TypeOrmModule.forFeature([User, ResetToken, Courier]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({

@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 
 import { MenuItem } from '../../types/menu-item'
-import useDeleteMenuItem from '../../api/hooks/menu-item/useDeleteMenuItem'
 import useCartStore from '../../hooks/zustand/useCartStore'
 import { toast } from 'react-toastify'
+import useDeleteMenuItem from '../../api/hooks/menu-item/mutations/useDeleteMenuItem'
 
 type MenuItemProps = {
   menuItem: MenuItem

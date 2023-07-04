@@ -24,6 +24,7 @@ const initialState: User = {
     fiftyPercentOff: 0,
   },
   addresses: [],
+  isCourier: false,
 }
 
 const useUser = () => {

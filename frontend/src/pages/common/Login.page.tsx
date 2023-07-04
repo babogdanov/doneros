@@ -10,6 +10,7 @@ const Login = () => {
   const [formState, setFormState] = useState({
     email: '',
     password: '',
+    isCourier: false,
   })
 
   const { mutate: login } = useLoginMutation()
@@ -37,7 +38,11 @@ const Login = () => {
 
     const trimmedForm = trimObjectStrings(formState)
 
-    login({ email: trimmedForm.email, password: trimmedForm.password })
+    login({
+      email: trimmedForm.email,
+      password: trimmedForm.password,
+      isCourier: formState.isCourier,
+    })
   }
 
   return (
@@ -51,6 +56,22 @@ const Login = () => {
             <h1 className='text-5xl font-bold text-yellow-500'>Login</h1>
           </div>
           <div className='mt-8'>
+            <div className='flex justify-center gap-4 align-middle'>
+              <input
+                type='checkbox'
+                name='courier'
+                id='courier'
+                checked={formState.isCourier}
+                onChange={() =>
+                  setFormState((prevState) => ({
+                    ...prevState,
+                    isCourier: !prevState.isCourier,
+                  }))
+                }
+              />
+              <label htmlFor='courier'>Courier?</label>
+            </div>
+
             <input
               type='email'
               name='email'
