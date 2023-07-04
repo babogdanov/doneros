@@ -5,11 +5,14 @@ export class CreateOrderDto {
   paymentMethod: string
 
   @IsNotEmpty()
-  addressId: string
+  addressId: number
 
   @IsNotEmpty()
   price: number
 
   @IsNotEmpty()
   userId: number
+
+  @IsNotEmpty()
+  menuItemIds: number[]
 }

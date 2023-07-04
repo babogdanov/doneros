@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer'
-import { IsString, IsNotEmpty } from 'class-validator'
+import { IsString, IsNotEmpty, IsBoolean } from 'class-validator'
 import { EmailDto } from './email.dto'
 
 export class LoginDto extends EmailDto {
@@ -7,4 +7,8 @@ export class LoginDto extends EmailDto {
   @IsNotEmpty()
   @Transform(({ value }) => value.trim())
   password: string
+
+  @IsBoolean()
+  @IsNotEmpty()
+  isCourier: boolean
 }

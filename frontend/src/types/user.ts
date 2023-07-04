@@ -2,9 +2,11 @@ import { Address } from './address'
 
 /* General-use types */
 
+import { Level } from './level'
+import { UserCoupons } from './user-coupons'
+
 export enum UserRole {
   USER = 'user',
-  COURIER = 'courier',
   MANAGER = 'manager',
   ADMIN = 'admin',
 }
@@ -15,7 +17,11 @@ export type User = {
   accessToken: string | null
   phoneNumber: string
   role: UserRole
+  points: number
+  level: Level
+  coupons: UserCoupons
   addresses: Address[]
+  isCourier: boolean
 }
 
 /* API types */
@@ -26,6 +32,7 @@ export type EmailRequest = {
 
 export type LoginRequest = EmailRequest & {
   password: string
+  isCourier: boolean
 }
 
 export type LoginResponse = User

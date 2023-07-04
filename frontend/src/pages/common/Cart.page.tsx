@@ -1,12 +1,18 @@
-import MenuItemCard from '../../components/MenuItem/MenuItemCard'
+import { useState } from 'react'
+
+import useCreateOrder from '../../api/hooks/order/mutations/useCreateOrder'
 import useUser from '../../hooks/useUser'
 import useCartStore from '../../hooks/zustand/useCartStore'
-import { UserRole } from '../../types/user'
-import { useEffect, useState } from 'react'
+import MenuItemCard from '../../components/MenuItem/MenuItemCard'
 import Popup from '../../components/common/Popup'
+import { UserRole } from '../../types/user'
 import { CreateOrderRequest } from '../../types/order'
-import useCreateOrder from '../../api/hooks/order/mutations/useCreateOrder'
 import { Address } from '../../types/address'
+
+type FormState = {
+  paymentMethod: string
+  addressId: number
+}
 
 const getFormattedAddress = (address: Address) => {
   return `${address.city}, ${address.street}, ${address.number}, ${address.postalCode}`
@@ -15,29 +21,32 @@ const getFormattedAddress = (address: Address) => {
 const Cart = () => {
   const user = useUser()
   const cart = useCartStore((state) => state.cart)
-  const [isOpen, setIsOpen] = useState(false)
-  const { mutate: create } = useCreateOrder()
-  const [price, setPrice] = useState(0)
 
-  useEffect(() => {
-    setPrice(cart.reduce((sum, item) => +sum + +item.price, 0))
-  }, [cart])
+  const [isOpen, setIsOpen] = useState(false)
+  const defaultAddress = user.addresses[0]
+
+  const [formState, setFormState] = useState<FormState>({
+    paymentMethod: 'card',
+    addressId: defaultAddress.id,
+  })
+
+  const { mutate: create } = useCreateOrder()
+
+  const menuItemIds = cart.map((menuItem) => menuItem.id)
+  const price = cart.reduce((sum, item) => +sum + +item.price, 0)
 
   const togglePopup = () => {
     setIsOpen(!isOpen)
   }
 
-  console.log(user.addresses)
-
-  const defaultAddress = user.addresses[0]
-  const [formState, setFormState] = useState({
-    paymentMethod: 'card',
-    addressId: defaultAddress.id,
-    price: '',
-  })
-
-  const handleSubmit = async (data: CreateOrderRequest) => {
-    create({ ...data, userId: user.id })
+  const handleSubmit = async () => {
+    const payload: CreateOrderRequest = {
+      ...formState,
+      price,
+      userId: user.id,
+      menuItemIds,
+    }
+    create(payload)
   }
 
   return (
@@ -110,18 +119,7 @@ const Cart = () => {
                   </select>
                 </div>
               </div>
-              <button
-                onClick={() =>
-                  handleSubmit({
-                    paymentMethod: formState.paymentMethod,
-                    addressId: formState.addressId,
-                    price: +price,
-                    userId: user.id,
-                  })
-                }
-              >
-                Завърши поръчка
-              </button>
+              <button onClick={handleSubmit}>Завърши поръчка</button>
             </>
           }
           handleClose={togglePopup}

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 
 import { MenuItemEditable } from '../../types/menu-item'
-import useCreateMenuItem from '../../api/hooks/menu-item/useCreateMenuItem'
+import useCreateMenuItem from '../../api/hooks/menu-item/mutations/useCreateMenuItem'
 import MenuItemForm from '../../components/MenuItem/MenuItemForm'
 
 const RestaurantMenuCreate = () => {

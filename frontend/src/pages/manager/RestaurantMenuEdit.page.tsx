@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { MenuItemEditable } from '../../types/menu-item'
-import useMenuItem from '../../api/hooks/menu-item/useMenuItem'
-import useEditMenuItem from '../../api/hooks/menu-item/useEditMenuItem'
+import useMenuItem from '../../api/hooks/menu-item/queries/useMenuItem'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
 import MenuItemForm from '../../components/MenuItem/MenuItemForm'
 import useUser from '../../hooks/useUser'
+import useEditMenuItem from '../../api/hooks/menu-item/mutations/useEditMenuItem'
 
 const RestaurantMenuEdit = () => {
   const { id } = useParams()

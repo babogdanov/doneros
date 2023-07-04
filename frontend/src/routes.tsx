@@ -5,12 +5,12 @@ import ProtectedRoute from './layout/ProtectedRoute'
 import { UserRole } from './types/user'
 
 // Common pages
-import Home from './pages/common/Home.page'
 import Register from './pages/common/Register.page'
 import Login from './pages/common/Login.page'
 import UserRestaurantList from './pages/common/UserRestaurantList.page'
 import Profile from './pages/common/Profile.page'
 import Restaurant from './pages/common/UserRestaurant.page'
+import UserOrders from './pages/common/UserOrders.page'
 // Manager pages
 import RestaurantMenuEdit from './pages/manager/RestaurantMenuEdit.page'
 import RestaurantMenuCreate from './pages/manager/RestaurantMenuCreate.page'
@@ -21,8 +21,9 @@ import Storage from './pages/manager/Storage.page'
 import CourierHome from './pages/courier/CourierHome.page'
 // Admin pages
 import AdminHome from './pages/admin/AdminHome.page'
-import Orders from './pages/common/Orders.page'
+import Orders from './pages/courier/Orders.page'
 import Cart from './pages/common/Cart.page'
+import OrderTracking from './pages/common/OrderTracking.page'
 
 const AppRoutes = () => {
   return (
@@ -45,15 +46,15 @@ const AppRoutes = () => {
 
         <Route element={<ProtectedRoute allowedRoles={[UserRole.USER]} />}>
           <Route path='/cart' element={<Cart />} />
+          <Route path='/user/orders' element={<UserOrders />} />
+          <Route path='/order-tracking/:orderId' element={<OrderTracking />} />
         </Route>
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute allowCourier />}>
           <Route path='/profile' element={<Profile />} />
         </Route>
 
-        <Route
-          element={<ProtectedRoute allowedRoles={[UserRole.COURIER, UserRole.ADMIN]} />}
-        >
+        <Route element={<ProtectedRoute allowedRoles={[UserRole.ADMIN]} allowCourier />}>
           <Route path='/home/courier' element={<CourierHome />} />
         </Route>
 
@@ -73,7 +74,8 @@ const AppRoutes = () => {
         <Route
           element={
             <ProtectedRoute
-              allowedRoles={[UserRole.COURIER, UserRole.MANAGER, UserRole.ADMIN]}
+              allowedRoles={[UserRole.MANAGER, UserRole.ADMIN]}
+              allowCourier
             />
           }
         >

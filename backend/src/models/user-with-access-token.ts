@@ -1,3 +1,9 @@
-import { UserWithoutPassword } from './user-without-password'
+import {
+  CourierWithoutPassword,
+  UserWithoutPassword,
+} from './user-without-password'
 
-export type UserWithAccessToken = UserWithoutPassword & { accessToken: string }
+export type UserWithAccessToken = (
+  | UserWithoutPassword
+  | CourierWithoutPassword
+) & { accessToken: string }

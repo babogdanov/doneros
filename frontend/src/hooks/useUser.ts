@@ -10,7 +10,21 @@ const initialState: User = {
   phoneNumber: '',
   role: UserRole.USER,
   accessToken: null,
+  points: 0,
+  level: {
+    id: 0,
+    name: '',
+    points: 0,
+  },
+  coupons: {
+    freeDelivery: 0,
+    tenPercentOff: 0,
+    twentyPercentOff: 0,
+    thirtyPercentOff: 0,
+    fiftyPercentOff: 0,
+  },
   addresses: [],
+  isCourier: false,
 }
 
 const useUser = () => {
