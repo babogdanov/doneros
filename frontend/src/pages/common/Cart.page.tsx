@@ -27,7 +27,7 @@ const Cart = () => {
 
   const [formState, setFormState] = useState<FormState>({
     paymentMethod: 'card',
-    addressId: defaultAddress.id,
+    addressId: defaultAddress?.id,
   })
 
   const { mutate: create } = useCreateOrder()
