@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import useUpdateOrder from '../../api/hooks/order/mutations/useUpdateOrder'
 import useUser from '../../hooks/useUser'
 import { Order, OrderStatus } from '../../types/order'
@@ -7,6 +8,7 @@ type OrderCardProps = {
 }
 
 const OrderCard = ({ order }: OrderCardProps) => {
+  const navigate = useNavigate()
   const { id: userId, isCourier } = useUser()
   const { address, paymentMethod, price, menuItems, status, id, courier } = order
 
@@ -37,6 +39,14 @@ const OrderCard = ({ order }: OrderCardProps) => {
 
       {!isCourier && status !== OrderStatus.CREATED && (
         <p>{`Courier: ${order.courier.email}`}</p>
+      )}
+      {!isCourier && status === OrderStatus.IN_PROGRESS && (
+        <button
+          className='bg-green-400 text-white hover:bg-green-600 hover:text-white'
+          onClick={() => navigate(`/order-tracking/${order.id}`)}
+        >
+          Track your order
+        </button>
       )}
       {isCourier && (
         <>

@@ -88,8 +88,8 @@ export class OrderService {
       courierId,
     )
     await this.courierRepository.update(courierId, {
-      latitude: +latitude - 0.0001,
-      longitude: +longitude - 0.0001,
+      latitude: +latitude - 0.0005,
+      longitude: +longitude - 0.0005,
     })
     return { courierId, latitude, longitude }
   }
