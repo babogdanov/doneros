@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import * as bcrypt from 'bcrypt'
 import {
   Entity,
@@ -6,13 +7,15 @@ import {
   BeforeInsert,
   BeforeUpdate,
   OneToMany,
+  JoinColumn,
+  ManyToOne,
 } from 'typeorm'
 
 import { BaseEntity } from './base.entity'
 import { ResetToken } from './reset-token.entity' // eslint-disable-line
-// eslint-disable-next-line import/no-cycle
 import { Order } from './order.entity'
-// eslint-disable-next-line import/no-cycle
+import { UserCoupons } from './user-coupons.entity'
+import { Level } from './level.entity'
 import { Address } from './address.entity'
 
 export enum UserRole {
@@ -47,13 +50,23 @@ export class User extends BaseEntity {
   @OneToMany(() => Order, (order) => order.user)
   orders: Order[]
 
-  @OneToOne(() => ResetToken)
-  resetToken: ResetToken
+  @OneToOne(() => UserCoupons, (userCoupons) => userCoupons.user)
+  @JoinColumn()
+  coupons: UserCoupons
+
+  @ManyToOne(() => Level, (level) => level.id, { eager: true })
+  level: Level
+
+  @Column({ default: 0 })
+  points: number
 
   @OneToMany(() => Address, (address) => address.user, {
     eager: true,
   })
   addresses: Address[]
+
+  @OneToOne(() => ResetToken)
+  resetToken: ResetToken
 
   @BeforeInsert()
   @BeforeUpdate()

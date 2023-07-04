@@ -14,6 +14,9 @@ export class OrderService {
     // @ts-ignore
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
+    // @ts-ignore
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   async create(createOrderDto: CreateOrderDto) {
@@ -23,6 +26,8 @@ export class OrderService {
     const order = await this.orderRepository
       .create({ ...orderDto, user, address })
       .save()
+    const points = Math.round(order.price / 10)
+    await this.userRepository.update(userId, { points })
 
     return { order }
   }

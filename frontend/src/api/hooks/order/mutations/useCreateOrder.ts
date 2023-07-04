@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 
 const useCreateOrder = () => {
   const navigate = useNavigate()
+
   return useBaseMutation<CreateOrderRequest, OrderResponse>({
     apiParams: { path: '/order', method: 'POST' },
     builtInParams: {
