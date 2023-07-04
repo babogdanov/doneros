@@ -26,7 +26,6 @@ const Storage = () => {
 
   const handleSubmit = async (data: IngredientRequest) => {
     create({ ...data, restaurantId })
-    window.location.reload()
   }
 
   return (

@@ -23,7 +23,6 @@ const StorageIngredient = ({ ingredient }: IngredientProps) => {
       setButtonLabel('Обнови');
       setShowInputFields(false);
       updateIngredient({ name: newName, quantity: newQuantity });
-      window.location.reload();
     } else {
       setButtonLabel('Запази');
       setShowInputFields(true);
@@ -62,7 +61,6 @@ const StorageIngredient = ({ ingredient }: IngredientProps) => {
         className='w-full bg-red-500 text-white hover:bg-red-600 hover:text-white'
         onClick={() => {
           deleteIngredient();
-          window.location.reload();
         }}
       >
         Премахни
